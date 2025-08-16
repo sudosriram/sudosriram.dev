@@ -1,0 +1,40 @@
+:root {
+    font-size: 16px;
+    /* default */
+    --space-xs: 0.25rem;
+    /* 4px */
+    --space-sm: 0.5rem;
+    /* 8px */
+    --space-md: 1rem;
+    /* 16px */
+    --space-lg: 1.5rem;
+    /* 24px */
+    --space-xl: 2rem;
+    /* 32px */
+
+    /* Hero / Headline */
+    --font-hero-xs: 2rem;
+    /* small phones */
+    --font-hero-sm: 2.5rem;
+    /* medium phones */
+    --font-hero-md: 3rem;
+    /* large phones */
+    --font-hero-lg: 4rem;
+    /* tablets & up */
+    --font-hero-xl: 5rem;
+    /* desktops & large screens */
+
+    /* Subhead / tagline */
+    --font-sub-xs: 1rem;
+    --font-sub-sm: 1.2rem;
+    --font-sub-md: 1.4rem;
+    --font-sub-lg: 1.6rem;
+    --font-sub-xl: 2rem;
+
+    /* Body / regular content */
+    --font-body-xs: 0.875rem;
+    --font-body-sm: 1rem;
+    --font-body-md: 1.125rem;
+    --font-body-lg: 1.25rem;
+    --font-body-xl: 1.5rem;
+}
