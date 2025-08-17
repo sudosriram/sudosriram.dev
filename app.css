@@ -96,6 +96,7 @@ body {
     color: transparent;
     font-weight: 900;
     letter-spacing: -3px;
+    text-align: center;
     text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
     opacity: 0;
     animation: flicker 1.2s forwards cubic-bezier(.03,1.26,1,-0.68);
