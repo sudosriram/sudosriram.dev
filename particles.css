@@ -11,35 +11,35 @@
 
 .particle:nth-child(6) {
     top: 15%;
-    left: -50px;
+    left: 20%;
     animation: moveLeftToRight1 15s infinite linear;
     animation-delay: 1s;
 }
 
 .particle:nth-child(7) {
     top: 20%;
-    right: -50px;
+    right: 25%;
     animation: moveRightToLeft2 18s infinite linear;
     animation-delay: 1s;
 }
 
 .particle:nth-child(8) {
     top: 40%;
-    left: -50px;
+    left: 20%;
     animation: moveLeftToRight3 20s infinite linear;
     animation-delay: 1s;
 }
 
 .particle:nth-child(9) {
     top: 35%;
-    right: -50px;
+    right: 25%;
     animation: moveRightToLeft4 14s infinite linear;
     animation-delay: 1s;
 }
 
 .particle:nth-child(10) {
     top: 5%;
-    left: -50px;
+    left: 15%;
     animation: moveLeftToRight5 22s infinite linear;
     animation-delay: 1s;
 }
