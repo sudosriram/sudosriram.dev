@@ -13,35 +13,35 @@
     top: 15%;
     left: 45%;
     animation: circulate1 20s infinite linear;
-    animation-delay: 2s;
+    animation-delay: 6s;
 }
 
 .particle:nth-child(7) {
     top: 25%;
     left: 55%;
     animation: circulate2 20s infinite linear;
-    animation-delay: 3s;
+    animation-delay: 7s;
 }
 
 .particle:nth-child(8) {
     top: 35%;
     left: 50%;
     animation: circulate3 20s infinite linear;
-    animation-delay: 4s;
+    animation-delay: 8s;
 }
 
 .particle:nth-child(9) {
     top: 10%;
     left: 65%;
     animation: circulate4 20s infinite linear;
-    animation-delay: 3s;
+    animation-delay: 9s;
 }
 
 .particle:nth-child(10) {
     top: 5%;
     left: 40%;
     animation: circulate5 20s infinite linear;
-    animation-delay: 5s;
+    animation-delay: 10s;
 }
 
 @keyframes circulate1 {
