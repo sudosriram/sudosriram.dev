@@ -11,6 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Always wrap letters once the "visible" section is decided.
   const startMain = () => {
     show(mainHero);
+    
+    // Restart beam flicker animations
+    restartBeamAnimations();
+    
+    // Start particles after lights stabilize (2s delay + 1.2s flicker = 3.2s)
+    setTimeout(() => {
+      startParticleAnimations();
+    }, 3200);
+    
     // Wait 2s for light beams to flicker and stabilize, then start text animation
     setTimeout(() => {
       startScramblingAnimation();
@@ -43,6 +52,65 @@ document.addEventListener('DOMContentLoaded', () => {
     startMain();
   }
 });
+
+// Restart beam flicker animations when main hero becomes visible
+function restartBeamAnimations() {
+  const beams = document.querySelectorAll('.beam');
+  
+  // Reset all beam animations by removing and re-adding the animation class
+  beams.forEach((beam, index) => {
+    // Remove existing animation
+    beam.style.animation = 'none';
+    
+    // Force reflow to ensure the animation is truly reset
+    beam.offsetHeight;
+    
+    // Re-apply the appropriate animation based on beam index
+    if (index === 1 || index === 2 || index === 3) { // beams 2, 3, 4 (0-indexed)
+      beam.style.animation = 'flicker 1.2s forwards cubic-bezier(.03,1.26,1,-0.68)';
+    }
+  });
+}
+
+// Start particle animations
+function startParticleAnimations() {
+  const particles = document.querySelectorAll('.particle');
+  
+  particles.forEach((particle, index) => {
+    // Remove any existing animation
+    particle.style.animation = 'none';
+    particle.offsetHeight; // Force reflow
+    
+    // Get the original animation from CSS (particles are nth-child(6) through nth-child(10))
+    const particleNumber = index + 1; // Convert to 1-based indexing for nth-child
+    const delay = (particleNumber - 5) * 1000; // 1s, 2s, 3s, 4s, 5s delays
+    
+    setTimeout(() => {
+      if (particleNumber === 1) particle.style.animation = 'circulate1 20s infinite linear';
+      if (particleNumber === 2) particle.style.animation = 'circulate2 20s infinite linear';
+      if (particleNumber === 3) particle.style.animation = 'circulate3 20s infinite linear';
+      if (particleNumber === 4) particle.style.animation = 'circulate4 20s infinite linear';
+      if (particleNumber === 5) particle.style.animation = 'circulate5 20s infinite linear';
+    }, delay);
+  });
+}
+
+// Start scroll animations after text is complete
+function startScrollAnimations() {
+  const scrollText = document.querySelector('.scroll > p');
+  const scrollArrow = document.querySelector('.scroll .arrow');
+  
+  if (scrollText) {
+    scrollText.style.animation = 'fade-in 1s linear forwards';
+  }
+  
+  if (scrollArrow) {
+    setTimeout(() => {
+      scrollArrow.style.animation = 'move-arrow 1s infinite alternate ease-in-out';
+      scrollArrow.style.opacity = '1';
+    }, 1000); // 1s after text starts
+  }
+}
 
 // Scrambling letter animation
 function startScramblingAnimation() {
@@ -111,6 +179,11 @@ function startScramblingAnimation() {
   setTimeout(() => {
     startPeriodicGlitchEffect();
   }, totalAnimationTime);
+  
+  // Start scroll animations after all text is complete
+  setTimeout(() => {
+    startScrollAnimations();
+  }, totalAnimationTime + 500); // 500ms after text is fully assembled
 }
 
 // Periodic glitch effects - single letter only

@@ -290,8 +290,7 @@ body {
     text-transform: uppercase;
     font-size: 0.7rem;
     padding: 0;
-    animation: fade-in 1s linear forwards;
-    animation-delay: 6s;
+    /* animation controlled by JavaScript */
     opacity: 0;
     font-weight: 700;
     letter-spacing: 1px;
@@ -304,8 +303,7 @@ body {
     transform: translate(-50%, -50%);
     font-size: 1rem;
     padding: 0;
-    animation: move-arrow 1s infinite alternate ease-in-out;
-    animation-delay: 7s;
+    /* animation controlled by JavaScript */
     opacity: 0;
 }
 

@@ -12,36 +12,31 @@
 .particle:nth-child(6) {
     top: 15%;
     left: 45%;
-    animation: circulate1 20s infinite linear;
-    animation-delay: 6s;
+    /* animation controlled by JavaScript */
 }
 
 .particle:nth-child(7) {
     top: 25%;
     left: 55%;
-    animation: circulate2 20s infinite linear;
-    animation-delay: 7s;
+    /* animation controlled by JavaScript */
 }
 
 .particle:nth-child(8) {
     top: 35%;
     left: 50%;
-    animation: circulate3 20s infinite linear;
-    animation-delay: 8s;
+    /* animation controlled by JavaScript */
 }
 
 .particle:nth-child(9) {
     top: 10%;
     left: 65%;
-    animation: circulate4 20s infinite linear;
-    animation-delay: 9s;
+    /* animation controlled by JavaScript */
 }
 
 .particle:nth-child(10) {
     top: 5%;
     left: 40%;
-    animation: circulate5 20s infinite linear;
-    animation-delay: 10s;
+    /* animation controlled by JavaScript */
 }
 
 @keyframes circulate1 {
