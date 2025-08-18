@@ -43,12 +43,12 @@ body {
 }
 
 .quote p:first-child {
-    animation: 2s fade-in forwards linear;
+    animation: 1s fade-in forwards linear;
     color: #e0e8ff;
 }
 
 .quote .first {
-    animation: 2s fade-in forwards linear;
+    animation: 1s fade-in forwards linear;
     animation-delay: 1.5s;
     color: #e0e8ff;
 }
@@ -65,7 +65,7 @@ body {
     opacity: 0;
     text-align: right;
     margin-top: 1%;
-    animation: fade-in 2s ease forwards;
+    animation: fade-in 1s ease forwards;
     animation-delay: 5s;
     color: #999999;
 }
