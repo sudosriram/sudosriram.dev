@@ -10,147 +10,193 @@ body {
     background-color: #000;
 }
 
-.hero {
+#main-hero .hero {
     width: 100%;
     height: 100vh;
     background-color: #000;
     overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     position: relative;
 }
 
-.quote {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+/* Ensure no pseudo-elements from other sections affect main hero */
+#main-hero .hero::after {
+    display: none;
 }
 
-.quote .special {
-    display: flex;
-    justify-content: center;
-}
 
-.quote p, .quote span {
-    font-size: 3.5vw;
-    font-family: 'Merriweather', serif;
-    letter-spacing: 2px;
-    color: white;
-    line-height: 2.5;
-    opacity: 0;
-}
-
-.quote p:first-child {
-    animation: 1s fade-in forwards linear;
-    color: #e0e8ff;
-}
-
-.quote .first {
-    animation: 1s fade-in forwards linear;
-    animation-delay: 1.5s;
-    color: #e0e8ff;
-}
-
-.quote .second {
-    animation: 2s fade-in forwards linear;
-    animation-delay: 3s;
-    margin-left: 1vw;
-    color: #fdfdfd;
-    text-shadow: 2px 2px 5px rgba(253, 253, 253, 1);
-}
-
-.quote p:last-child {
-    opacity: 0;
-    text-align: right;
-    margin-top: 1%;
-    animation: fade-in 1s ease forwards;
-    animation-delay: 5s;
-    color: #999999;
-}
-
-.hero::after {
-    content: "";
+.hero-text {
     position: absolute;
-    width: 100vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    line-height: 1.2;
+}
+
+.spotlight {
+    width: 100%;
     height: 100vh;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.2) 0px,       /* dark stripe */
-        rgba(0, 0, 0, 0.2) 2px,
-        rgba(30, 30, 30, 0.2) 2px,    /* very dark gray */
-        rgba(30, 30, 30, 0.2) 4px,
-        rgba(50, 50, 50, 0.15) 4px,   /* softer gray */
-        rgba(50, 50, 50, 0.15) 6px,
-        rgba(80, 80, 80, 0.1) 6px,    /* faint lighter line */
-        rgba(80, 80, 80, 0.1) 8px,
-        transparent 8px,              
-        transparent 14px              
-    );
-    pointer-events: none;
-    animation: glitch 6.5s steps(1, end) forwards;
-}
-
-@keyframes glitch {
-    0%   { background-image: repeating-linear-gradient(0deg,   rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
-    14%  { background-image: repeating-linear-gradient(45deg,  rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
-    28%  { background-image: repeating-linear-gradient(90deg,  rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
-    42%  { background-image: repeating-linear-gradient(135deg, rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
-    57%  { background-image: repeating-linear-gradient(180deg, rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
-    71%  { background-image: repeating-linear-gradient(225deg, rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
-    85%  { background-image: repeating-linear-gradient(270deg, rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
-    100% { background-image: repeating-linear-gradient(360deg, rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
-}
-
-@-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
-
-
-.hero-wrapper {
+    position: relative;
     overflow: hidden;
-    position: relative; /* ensures clip-path and transforms stay contained */
 }
 
-.hero.exit {
-    animation: glitch-out 1.2s forwards;
-    animation-delay: 1s;
+.beam {
+    position: absolute;
+    width: 25%;
+    height: 150%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(230, 240, 255, 0.5) 40%,
+        rgba(200, 220, 255, 0.15) 75%,
+        transparent 100%
+    );
+    margin-top: -60vh;
+    filter: blur(70px);
 }
 
-@keyframes glitch-out {
+
+.beam:nth-of-type(1) { 
+    transform: translateX(50%) rotate(30deg);
+    opacity: 0;
+}
+
+.beam:nth-of-type(2) {
+    transform: translateX(100%) rotate(15deg);
+    opacity: 0;
+    animation: flicker 1.2s forwards cubic-bezier(.03,1.26,1,-0.68);
+}
+
+.beam:nth-of-type(3) {
+    transform: translateX(150%) rotate(0deg);
+    opacity: 0;
+    animation: flicker 1.2s forwards cubic-bezier(.03,1.26,1,-0.68);
+}
+
+.beam:nth-of-type(4) {
+    transform: translateX(200%) rotate(-15deg);
+    opacity: 0;
+    animation: flicker 1.2s forwards cubic-bezier(.03,1.26,1,-0.68);
+}
+
+.beam:nth-of-type(5) {
+    transform: translateX(250%) rotate(-30deg);
+    opacity: 0;
+}
+
+
+.hero-text h1 {
+    font-size: 4rem;
+    background: radial-gradient(ellipse 200% 100% at center, 
+        rgba(255, 255, 255, 1) 0%,
+        rgba(230, 240, 255, 0.9) 20%,
+        rgba(200, 220, 255, 0.6) 40%,
+        rgba(150, 180, 220, 0.4) 60%,
+        rgba(100, 120, 150, 0.2) 80%,
+        rgba(50, 50, 50, 0.1) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-transform: uppercase;
+    color: transparent;
+    font-weight: 900;
+    letter-spacing: -3px;
+    text-align: center;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    opacity: 0;
+    animation: flicker 1.2s forwards cubic-bezier(.03,1.26,1,-0.68);
+}
+
+.hero-text p {
+    font-size: calc(var(--font-sub-xs) - 15%);
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: radial-gradient(ellipse 150% 80% at center,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(230, 240, 255, 0.7) 25%,
+        rgba(200, 220, 255, 0.5) 50%,
+        rgba(150, 180, 220, 0.3) 75%,
+        rgba(80, 80, 80, 0.2) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    animation: flicker 1.2s forwards cubic-bezier(.03,1.26,1,-0.68);
+}
+
+@keyframes flicker {
+    0%   { opacity: 1; }
+    8%   { opacity: 0.4; }
+    12%  { opacity: 0.8; }
+    20%  { opacity: 0.2; }
+    25%  { opacity: 1; }
+    38%  { opacity: 0.6; }
+    42%  { opacity: 1; }
+    60%  { opacity: 1; }
+    72%  { opacity: 0.3; }
+    76%  { opacity: 0.9; }
+    85%  { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+
+.scroll {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.scroll > p {
+    background: radial-gradient(ellipse 150% 80% at center,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(230, 240, 255, 0.7) 25%,
+        rgba(200, 220, 255, 0.5) 50%,
+        rgba(150, 180, 220, 0.3) 75%,
+        rgba(80, 80, 80, 0.2) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    padding: 0;
+    animation: fade-in 1s linear forwards;
+    animation-delay: 1.5s;
+    opacity: 0;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.scroll .arrow {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    padding: 0;
+    animation: move-arrow 1s infinite alternate ease-in-out;
+    animation-delay: 2s;
+    opacity: 0;
+}
+
+/* smoother arrow bounce */
+@keyframes move-arrow {
     0% {
+        transform: translate(-50%, -50%) translateY(3rem);
         opacity: 1;
-        transform: none;
-        clip-path: inset(0 0 0 0);
-    }
-
-    20% {
-        opacity: 0.9;
-        transform: skew(-10deg);
-        clip-path: inset(10% 0 15% 0);
-    }
-
-    40% {
-        opacity: 0.6;
-        transform: skew(10deg);
-        clip-path: inset(30% 0 40% 0);
-    }
-
-    60% {
-        opacity: 0.4;
-        transform: skew(-5deg);
-        clip-path: inset(60% 0 20% 0);
-    }
-
-    80% {
-        opacity: 0.2;
-        transform: skew(15deg);
-        clip-path: inset(80% 0 10% 0);
     }
 
     100% {
-        opacity: 0;
-        transform: translateY(100vh) skew(0deg);
-        clip-path: inset(100% 0 0 0);
+        transform: translate(-50%, -50%) translateY(30px);
+        opacity: 1;
     }
 }
+
+
+@-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
