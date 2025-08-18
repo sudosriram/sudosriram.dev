@@ -15,5 +15,60 @@ body {
     height: 100vh;
     background-color: #000;
     overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
+.quote {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.quote .special {
+    display: flex;
+    justify-content: center;
+}
+
+.quote p, .quote span {
+    font-size: 3vw;
+    font-family: 'EB Garamond', serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    line-height: 2.5;
+    opacity: 0;
+}
+
+.quote p:first-child {
+    animation: 2s fade-in forwards linear;
+    color: #e0e8ff;
+}
+
+.quote .first {
+    animation: 2s fade-in forwards linear;
+    animation-delay: 1.5s;
+    color: #e0e8ff;
+}
+
+.quote .second {
+    animation: 2s fade-in forwards linear;
+    animation-delay: 3s;
+    margin-left: 1vw;
+    color: #fdfdfd;
+    text-shadow: 2px 2px 5px rgba(253, 253, 253, 1);
+}
+
+.quote p:last-child {
+    opacity: 0;
+    text-align: right;
+    margin-top: 1%;
+    animation: fade-in 2s ease forwards;
+    animation-delay: 5s;
+    color: #fefefe;
+}
+
+
+@-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
