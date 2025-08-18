@@ -105,3 +105,52 @@ body {
 }
 
 @-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
+
+
+.hero-wrapper {
+    overflow: hidden;
+    position: relative; /* ensures clip-path and transforms stay contained */
+}
+
+.hero.exit {
+    animation: glitch-out 1.2s forwards;
+    animation-delay: 1s;
+}
+
+@keyframes glitch-out {
+    0% {
+        opacity: 1;
+        transform: none;
+        clip-path: inset(0 0 0 0);
+    }
+
+    20% {
+        opacity: 0.9;
+        transform: skew(-10deg);
+        clip-path: inset(10% 0 15% 0);
+    }
+
+    40% {
+        opacity: 0.6;
+        transform: skew(10deg);
+        clip-path: inset(30% 0 40% 0);
+    }
+
+    60% {
+        opacity: 0.4;
+        transform: skew(-5deg);
+        clip-path: inset(60% 0 20% 0);
+    }
+
+    80% {
+        opacity: 0.2;
+        transform: skew(15deg);
+        clip-path: inset(80% 0 10% 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) skew(0deg);
+        clip-path: inset(100% 0 0 0);
+    }
+}
