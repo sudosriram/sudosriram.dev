@@ -19,6 +19,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .quote {
@@ -33,10 +34,9 @@ body {
 }
 
 .quote p, .quote span {
-    font-size: 3vw;
-    font-family: 'EB Garamond', serif;
+    font-size: 3.5vw;
+    font-family: 'Merriweather', serif;
     letter-spacing: 2px;
-    text-transform: uppercase;
     color: white;
     line-height: 2.5;
     opacity: 0;
@@ -67,8 +67,41 @@ body {
     margin-top: 1%;
     animation: fade-in 2s ease forwards;
     animation-delay: 5s;
-    color: #fefefe;
+    color: #999999;
 }
 
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.2) 0px,       /* dark stripe */
+        rgba(0, 0, 0, 0.2) 2px,
+        rgba(30, 30, 30, 0.2) 2px,    /* very dark gray */
+        rgba(30, 30, 30, 0.2) 4px,
+        rgba(50, 50, 50, 0.15) 4px,   /* softer gray */
+        rgba(50, 50, 50, 0.15) 6px,
+        rgba(80, 80, 80, 0.1) 6px,    /* faint lighter line */
+        rgba(80, 80, 80, 0.1) 8px,
+        transparent 8px,              
+        transparent 14px              
+    );
+    pointer-events: none;
+    animation: glitch 6.5s steps(1, end) forwards;
+}
+
+@keyframes glitch {
+    0%   { background-image: repeating-linear-gradient(0deg,   rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
+    14%  { background-image: repeating-linear-gradient(45deg,  rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
+    28%  { background-image: repeating-linear-gradient(90deg,  rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
+    42%  { background-image: repeating-linear-gradient(135deg, rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
+    57%  { background-image: repeating-linear-gradient(180deg, rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
+    71%  { background-image: repeating-linear-gradient(225deg, rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
+    85%  { background-image: repeating-linear-gradient(270deg, rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
+    100% { background-image: repeating-linear-gradient(360deg, rgba(0,0,0,0.2) 0 2px, rgba(30,30,30,0.2) 2px 4px, rgba(50,50,50,0.15) 4px 6px, rgba(80,80,80,0.1) 6px 8px, transparent 8px 14px); }
+}
 
 @-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
