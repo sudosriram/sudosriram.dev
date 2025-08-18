@@ -101,7 +101,7 @@ body {
 }
 
 .hero-text p {
-    font-size: calc(var(--font-sub-xs) - 30%);
+    font-size: calc(var(--font-sub-xs) - 15%);
     text-align: center;
     text-transform: capitalize;
     font-weight: 700;
@@ -136,3 +136,61 @@ body {
     85%  { opacity: 0.5; }
     100% { opacity: 1; }
 }
+
+
+.scroll {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.scroll > p {
+    background: radial-gradient(ellipse 150% 80% at center,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(230, 240, 255, 0.7) 25%,
+        rgba(200, 220, 255, 0.5) 50%,
+        rgba(150, 180, 220, 0.3) 75%,
+        rgba(80, 80, 80, 0.2) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    padding: 0;
+    animation: fade-in 1s linear forwards;
+    animation-delay: 1.5s;
+    opacity: 0;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.scroll .arrow {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    padding: 0;
+    animation: move-arrow 1s infinite alternate ease-in-out;
+    animation-delay: 2s;
+    opacity: 0;
+}
+
+/* smoother arrow bounce */
+@keyframes move-arrow {
+    0% {
+        transform: translate(-50%, -50%) translateY(3rem);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translateY(30px);
+        opacity: 1;
+    }
+}
+
+
+@-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
