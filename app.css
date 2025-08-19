@@ -101,10 +101,10 @@ body {
 }
 
 .hero-text p {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     text-align: center;
     text-transform: capitalize;
-    font-weight: 700;
+    font-weight: 900;
     text-transform: uppercase;
     background: radial-gradient(ellipse 150% 80% at center,
         rgba(255, 255, 255, 0.8) 0%,
@@ -166,7 +166,7 @@ body {
     font-size: 0.7rem;
     padding: 0;
     animation: fade-in 1s linear forwards;
-    animation-delay: 2.5s;
+    animation-delay: 4s;
     opacity: 0;
     font-weight: 700;
     letter-spacing: 1px;
@@ -181,7 +181,7 @@ body {
     font-size: 1rem;
     padding: 0;
     animation: fade-in-arrow 1s ease-out forwards, move-arrow 1s infinite alternate ease-in-out;
-    animation-delay: 3s, 3s;
+    animation-delay: 4.3s, 4.3s;
     opacity: 0;
     will-change: opacity, transform;
 }
