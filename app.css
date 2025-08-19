@@ -141,7 +141,7 @@ body {
 
 .scroll {
     position: absolute;
-    top: 70%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -162,11 +162,12 @@ body {
     font-size: 0.7rem;
     padding: 0;
     animation: fade-in 1s linear forwards;
-    animation-delay: 1.5s;
+    animation-delay: 2s;
     opacity: 0;
     font-weight: 700;
     letter-spacing: 1px;
     white-space: nowrap;
+    margin-top: 2rem;
 }
 
 .scroll .arrow {
@@ -175,23 +176,33 @@ body {
     transform: translate(-50%, -50%);
     font-size: 1rem;
     padding: 0;
-    animation: move-arrow 1s infinite alternate ease-in-out;
-    animation-delay: 2s;
+    animation: fade-in-arrow 1s ease-out forwards, move-arrow 1s infinite alternate ease-in-out;
+    animation-delay: 2.3s, 2.3s;
     opacity: 0;
+    will-change: opacity, transform;
 }
 
 
 
+/* Fade in animation for arrow */
+@keyframes fade-in-arrow {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateY(1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateY(0);
+    }
+}
+
 /* smoother arrow bounce */
 @keyframes move-arrow {
     0% {
-        transform: translate(-50%, -50%) translateY(3rem);
-        opacity: 1;
+        transform: translate(-50%, -50%) translateY(0);
     }
-
     100% {
-        transform: translate(-50%, -50%) translateY(30px);
-        opacity: 1;
+        transform: translate(-50%, -50%) translateY(15px);
     }
 }
 
