@@ -16,7 +16,7 @@
     transition: all 0.3s ease;
     z-index: 1000;
     opacity: 0;
-    animation: fadeInButton 1s ease forwards, socialFloat1 60s infinite linear;
+    animation: fadeInButton 1s ease forwards, socialFloat1 40s infinite linear;
     animation-delay: 2.5s, 3.5s;
 }
 
@@ -55,7 +55,7 @@
     transition: all 0.3s ease;
     z-index: 1000;
     opacity: 0;
-    animation: fadeInButton 1s ease forwards, socialFloat2 55s infinite linear;
+    animation: fadeInButton 1s ease forwards, socialFloat2 35s infinite linear;
     animation-delay: 3s, 4s;
 }
 
