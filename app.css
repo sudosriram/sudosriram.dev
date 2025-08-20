@@ -2,7 +2,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Archivo Black', sans-serif;
 }
 
-p {
+p, span {
     font-family: 'Inter', sans-serif;
 }
 
@@ -38,7 +38,7 @@ body {
 }
 
 .beam {
-    position: fixed;
+    position: absolute;
     width: 25%;
     height: 150%;
     background: linear-gradient(to bottom,
@@ -229,13 +229,404 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background: linear-gradient(-45deg, 
+        #0a0a0f, 
+        #0f0f1a, 
+        #141420, 
+        #1a1a28,
+        #0d0d18
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
 }
 
-.about::after {
-    content: "";
+.about-card {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+    height: 90dvh;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "about about"
+        "desc desc"
+        "desc desc"
+        "desc desc";
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.about-title {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 4rem;
+    color: white;
+    grid-area: about;
+    letter-spacing: -1rem;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(2rem);
+    animation: letterup 300ms ease forwards, letterexpand 300ms ease forwards;
+    animation-delay: 1s, 1.3s;
+    position: relative;
+    z-index: 11;
+    pointer-events: auto;
+}
+
+.about-title h2 {
+    pointer-events: auto;
+}
+
+.about-text {
+    color: white;
+    font-size: clamp(1.1rem, 2vw + 0.5rem, 3rem);
+    grid-area: desc;
+    text-transform: uppercase;
+    position: relative;
+    margin-top: -10dvh;
+    height: 80dvh;
     width: 100%;
-    height: 100dvh;
-    background-color: rgba(17, 17, 17, 0.94);
-    position: absolute;
+    z-index: 11;
+    pointer-events: auto;
 }
 
+.about-text p {
+    font-family: 'Big Shoulders', sans-serif;
+    pointer-events: auto;
+}
+
+.about-text span {
+    font-family: 'Archivo Black', sans-serif;
+}
+
+.about-text h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.c1 {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+    height: 25%;
+    border-radius: 20px;
+    line-height: 1.2;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    --rotate: -10deg;
+    transform: translate(-50%) rotate(-10deg);
+    opacity: 0;
+    animation: card1intro 1s ease forwards, card1float 3s ease-in-out infinite;
+    animation-delay: 1.5s, 4s;
+}
+
+.c1::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border: 0.1px solid rgba(230, 240, 255, 0.9);
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    border-radius: 50%;
+}
+
+.c1::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(45deg,
+            rgba(255, 255, 255, 0.6),
+            rgba(255, 215, 0, 0.8),
+            rgba(255, 165, 0, 0.6),
+            rgba(255, 69, 0, 0.4),
+            rgba(255, 20, 147, 0.3),
+            rgba(138, 43, 226, 0.2),
+            transparent);
+    background-size: 300% 300%;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+    animation: smoothBorderFlow 6s ease-in-out infinite;
+    z-index: -1;
+}
+
+.c2::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border: 0.1px solid rgba(230, 240, 255, 0.9);
+    position: absolute;
+    top: 10%;
+    right: 3%;
+    border-radius: 50%;
+}
+
+.card-header {
+    width: fit-content;
+}
+
+.c2 {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+    height: 30%;
+    border-radius: 20px;
+    line-height: 1.2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    --rotate: 15deg;
+    transform: translate(-50%) rotate(15deg);
+    opacity: 0;
+    animation: card2intro 1s ease forwards, card2float 3s infinite ease-in-out;
+    animation-delay: 2s, 5s;
+}
+
+.c2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(45deg,
+            rgba(255, 255, 255, 0.6),
+            rgba(255, 215, 0, 0.8),
+            rgba(255, 165, 0, 0.6),
+            rgba(255, 69, 0, 0.4),
+            rgba(255, 20, 147, 0.3),
+            rgba(138, 43, 226, 0.2),
+            transparent);
+    background-size: 300% 300%;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+    animation: smoothBorderFlow 6s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes smoothBorderFlow {
+    0% {
+        background-position: 0% 0%;
+        filter: brightness(0.8) saturate(0.8);
+    }
+
+    33% {
+        background-position: 100% 50%;
+        filter: brightness(1.2) saturate(1.2);
+    }
+
+    66% {
+        background-position: 50% 100%;
+        filter: brightness(1.4) saturate(1.4);
+    }
+
+    100% {
+        background-position: 0% 0%;
+        filter: brightness(0.8) saturate(0.8);
+    }
+}
+
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* @keyframes cardSlideIn {
+    from {
+        transform: translateY(50px) scale(0.95);
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        backdrop-filter: blur(20px);
+    }
+} */
+
+@keyframes letterup {
+    from {
+        transform: translateY(2rem);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+}
+
+@keyframes letterexpand {
+    from {
+        letter-spacing: -1rem;
+    }
+
+    to {
+        letter-spacing: 0rem
+    }
+}
+
+@keyframes afade-in-out {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -35%);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -40%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes card1intro {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -30px) rotate(0deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0) rotate(-10deg);
+    }
+}
+
+@keyframes card2intro {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 30px) rotate(0deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0) rotate(15deg);
+    }
+}
+
+@keyframes card1float {
+    0% {
+        transform: translate(-50%, 0) rotate(var(--rotate));
+    }
+
+    50% {
+        transform: translate(-50%, -10px) rotate(var(--rotate));
+    }
+
+    100% {
+        transform: translate(-50%, 0) rotate(var(--rotate));
+    }
+}
+
+
+@keyframes card2float {
+    0% {
+        transform: translate(-50%, 0) rotate(var(--rotate));
+    }
+
+    50% {
+        transform: translate(-50%, -10px) rotate(var(--rotate));
+    }
+
+    100% {
+        transform: translate(-50%, 0) rotate(var(--rotate));
+    }
+}
+
+/* Video Styles - Outside About Card */
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.black-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.black-overlay.active {
+    opacity: 1;
+}
+
+.background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
+}
+
+.background-video.active {
+    opacity: 0.3;
+}
+
+.about-video {
+    display: none;
+}
