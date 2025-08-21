@@ -7,7 +7,14 @@ p, span {
 }
 
 body {
-    background-color: #0f0f0f;
+    background: linear-gradient(135deg,
+        #080808 0%,
+        #141414 25%,
+        #202020 50%,
+        #181818 75%,
+        #101010 100%
+    );
+    min-height: 100vh;
 }
 
 
@@ -16,7 +23,6 @@ body {
 .hero {
     width: 100%;
     height: 100vh;
-    background-color: #0f0f0f;
     overflow: hidden;
 }
 
@@ -232,15 +238,6 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1;
-    background: linear-gradient(-45deg, 
-        #0a0a0f, 
-        #0f0f1a, 
-        #141420, 
-        #1a1a28,
-        #0d0d18
-    );
-    background-size: 400% 400%;
-    animation: gradientShift 8s ease infinite;
 }
 
 .about-card {
@@ -258,7 +255,6 @@ body {
         "desc desc"
         "desc desc";
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -274,8 +270,9 @@ body {
     opacity: 0;
     overflow: hidden;
     transform: translateY(2rem);
-    animation: letterup 300ms ease forwards, letterexpand 300ms ease forwards;
-    animation-delay: 1s, 1.3s;
+    /* Enable letterup and letterexpand animations */
+    animation: letterup 500ms ease forwards, letterexpand 500ms ease forwards;
+    animation-delay: 0s, 0.3s;
     position: relative;
     z-index: 11;
     pointer-events: auto;
@@ -283,6 +280,12 @@ body {
 
 .about-title h2 {
     pointer-events: auto;
+    opacity: 0;
+    transform: translateY(2rem);
+    display: inline-block;
+    /* Enable letterup animation for individual letters */
+    animation: letterup 400ms ease forwards;
+    animation-delay: 0.2s; /* Will be overridden by JavaScript for stagger effect */
 }
 
 .about-text {
@@ -312,28 +315,42 @@ body {
     padding: 0;
 }
 
-.c1 {
+/* Shared card styles */
+.c1, .c2 {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(5px);
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    gap: 1rem;
     width: 90%;
-    height: 25%;
     border-radius: 20px;
     line-height: 1.2;
     position: absolute;
-    top: 10%;
     left: 50%;
+    opacity: 0;
+}
+
+.c1 {
+    height: 25%;
+    top: 10%;
     --rotate: -10deg;
     transform: translate(-50%) rotate(-10deg);
-    opacity: 0;
     animation: card1intro 1s ease forwards, card1float 3s ease-in-out infinite;
     animation-delay: 1.5s, 4s;
+}
+
+.c2 {
+    height: 30%;
+    top: 50%;
+    --rotate: 15deg;
+    transform: translate(-50%) rotate(15deg);
+    animation: card2intro 1s ease forwards, card2float 3s infinite ease-in-out;
+    animation-delay: 2s, 5s;
 }
 
 .c1::before {
@@ -345,32 +362,6 @@ body {
     top: 10%;
     left: 5%;
     border-radius: 50%;
-}
-
-.c1::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 20px;
-    padding: 2px;
-    background: linear-gradient(45deg,
-            rgba(255, 255, 255, 0.6),
-            rgba(255, 215, 0, 0.8),
-            rgba(255, 165, 0, 0.6),
-            rgba(255, 69, 0, 0.4),
-            rgba(255, 20, 147, 0.3),
-            rgba(138, 43, 226, 0.2),
-            transparent);
-    background-size: 300% 300%;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: xor;
-    -webkit-mask-composite: xor;
-    animation: smoothBorderFlow 6s ease-in-out infinite;
-    z-index: -1;
 }
 
 .c2::after {
@@ -388,75 +379,71 @@ body {
     width: fit-content;
 }
 
-.c2 {
+
+.about-beam {
+    width: 150px;
+    height: 100dvh;
+    position: absolute;
+    top: 0;
+    transform-origin: top center;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.9) 0%,
+            rgba(240, 248, 255, 0.8) 10%,
+            rgba(220, 235, 255, 0.6) 25%,
+            rgba(200, 220, 255, 0.4) 40%,
+            rgba(180, 200, 240, 0.25) 60%,
+            rgba(160, 180, 220, 0.15) 75%,
+            rgba(140, 160, 200, 0.08) 85%,
+            rgba(120, 140, 180, 0.04) 92%,
+            transparent 100%);
+    filter: blur(40px);
+    opacity: 0;
+    animation: move-beam-intro 2s ease forwards, move-beam-cycle 20s ease infinite;
+    animation-delay: 0s, 3s;
+}
+
+.signature {
+    position: absolute;
+    bottom: 5%;
+    left: 15%;
+    transform: rotate(-5deg);
+}
+
+/* .signature::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 0;
+    border-radius: 50%;
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(5px);
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 90%;
-    height: 30%;
-    border-radius: 20px;
-    line-height: 1.2;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    --rotate: 15deg;
-    transform: translate(-50%) rotate(15deg);
-    opacity: 0;
-    animation: card2intro 1s ease forwards, card2float 3s infinite ease-in-out;
-    animation-delay: 2s, 5s;
+} */
+
+
+@keyframes move-beam-intro {
+    from {
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(80%) rotate(10deg);
+    }
 }
 
-.c2::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 20px;
-    padding: 2px;
-    background: linear-gradient(45deg,
-            rgba(255, 255, 255, 0.6),
-            rgba(255, 215, 0, 0.8),
-            rgba(255, 165, 0, 0.6),
-            rgba(255, 69, 0, 0.4),
-            rgba(255, 20, 147, 0.3),
-            rgba(138, 43, 226, 0.2),
-            transparent);
-    background-size: 300% 300%;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: xor;
-    -webkit-mask-composite: xor;
-    animation: smoothBorderFlow 6s ease-in-out infinite;
-    z-index: -1;
-}
-
-@keyframes smoothBorderFlow {
+@keyframes move-beam-cycle {
     0% {
-        background-position: 0% 0%;
-        filter: brightness(0.8) saturate(0.8);
+        transform: translateX(80%) rotate(10deg);
     }
-
-    33% {
-        background-position: 100% 50%;
-        filter: brightness(1.2) saturate(1.2);
+    50% {
+        transform: translateX(-50%) rotate(-15deg);
     }
-
-    66% {
-        background-position: 50% 100%;
-        filter: brightness(1.4) saturate(1.4);
-    }
-
     100% {
-        background-position: 0% 0%;
-        filter: brightness(0.8) saturate(0.8);
+        transform: translateX(80%) rotate(10deg);
     }
 }
 
@@ -474,20 +461,6 @@ body {
         background-position: 0% 50%;
     }
 }
-
-/* @keyframes cardSlideIn {
-    from {
-        transform: translateY(50px) scale(0.95);
-        opacity: 0;
-        backdrop-filter: blur(0px);
-    }
-
-    to {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-        backdrop-filter: blur(20px);
-    }
-} */
 
 @keyframes letterup {
     from {
@@ -572,61 +545,10 @@ body {
     }
 
     50% {
-        transform: translate(-50%, -10px) rotate(var(--rotate));
+        transform: translate(-50%, -5px) rotate(var(--rotate));
     }
 
     100% {
         transform: translate(-50%, 0) rotate(var(--rotate));
     }
-}
-
-/* Video Styles - Outside About Card */
-.video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.black-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
-    z-index: 2;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.black-overlay.active {
-    opacity: 1;
-}
-
-.background-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    pointer-events: none;
-}
-
-.background-video.active {
-    opacity: 0.3;
-}
-
-.about-video {
-    display: none;
 }
