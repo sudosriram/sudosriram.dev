@@ -583,9 +583,10 @@ body {
 .folder-wrapper {
     position: relative;
     width: 100%;
-    height: fit-content;
+    height: 400px;
     display: flex;
     flex-direction: column;
+    z-index: -1;
 }
 
 .face-folder, .desc-folder, .rating-folder {
@@ -598,6 +599,7 @@ body {
     width: 100%;
     height: fit-content;
     box-sizing: border-box;
+    height: 100%;
 }
 
 .folder-header {
@@ -605,6 +607,7 @@ body {
     top: 1rem;
     font-size: 1.5rem;
     color: white;
+    pointer-events: none;
 }
 
 .folder-header h3 {
@@ -612,7 +615,13 @@ body {
 }
 
 .folder-content {
-    margin-top: 3rem;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: calc(100% - 5rem);
+    box-sizing: border-box;
 }
 
 .folder-desc {
@@ -651,6 +660,7 @@ body {
     background-color: blue;
     z-index: -1;
     top: -3rem;
+    transform: translateY(0);
 }
 
 
@@ -661,6 +671,7 @@ body {
     background-color: green;
     z-index: -2;
     top: -6rem;
+    transform: translateY(0);
 }
 
 .folder-info {
@@ -769,6 +780,103 @@ body {
     color: rgba(255, 255, 255, 0.8);
 }
 
-.desc-folder:hover {
+.desc-folder.active {
     z-index: 1;
+}
+
+.rating-folder.active {
+    z-index: 1;
+}
+
+.folder-wrapper:has(.desc-folder.active)>.face-folder {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 10%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.folder-wrapper:has(.desc-folder.active)>.face-folder .folder-header {
+    position: static;
+    top: auto;
+    left: auto;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.folder-wrapper:has(.desc-folder.active)>.face-folder .folder-content {
+    display: none;
+}
+
+.folder-wrapper:has(.rating-folder.active)>.face-folder {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 10%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.folder-wrapper:has(.rating-folder.active)>.face-folder .folder-header {
+    position: static;
+    top: auto;
+    left: auto;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.folder-wrapper:has(.rating-folder.active)>.face-folder .folder-content {
+    display: none;
+}
+
+.folder-wrapper:has(.rating-folder.active)>.desc-folder {
+    position: relative;
+    top: 80%;
+    left: 0;
+    right: 0;
+    bottom: 20%;
+    height: 10%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.folder-wrapper:has(.rating-folder.active)>.desc-folder .folder-header {
+    position: absolute;
+    top: auto;
+    left: auto;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.folder-wrapper:has(.rating-folder.active)>.desc-folder .folder-info,
+.folder-wrapper:has(.rating-folder.active)>.desc-folder .folder-links {
+    display: none;
+}
+
+.folder-wrapper {
+    border: 2px solid white;
 }
