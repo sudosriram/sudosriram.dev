@@ -768,3 +768,7 @@ body {
 .link a {
     color: rgba(255, 255, 255, 0.8);
 }
+
+.desc-folder:hover {
+    z-index: 1;
+}
