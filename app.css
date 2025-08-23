@@ -1030,3 +1030,162 @@ html, body {
   75%  { transform: perspective(1000px) rotateX(-20deg) translateX(-4px)  rotate(-1deg); }
   100% { transform: perspective(1000px) rotateX(-20deg) translateX(0)     rotate(0deg); }
 }
+
+
+
+/* END OF PROJECTS STYLES */
+
+/* START OF CONTACT STYLES */
+
+.contact {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-header {
+    color: #fff;
+    font-family: 'Jersey 10', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    border-bottom: 2px solid #00FF9C;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.05);
+    width: 90%;
+}
+
+.form-content {
+    padding: 1rem 1.5rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-content *,
+.form-content *::before,
+.form-content *::after {
+    box-sizing: border-box;
+}
+
+.form-content form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.form-content label {
+    color: #00FF9C;
+    font-family: 'Jersey 10', sans-serif;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    opacity: 0.9;
+    transition: color 0.3s ease;
+}
+
+.form-group {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid rgba(182, 255, 161, 0.6);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(182, 255, 161, 0.6);
+    font-family: 'Jersey 10', sans-serif;
+    font-size: 1rem;
+    caret-color: transparent;
+
+    transition: border-color 400ms ease, box-shadow 400ms ease, color 400ms ease;
+}
+
+.fake-caret {
+    position: absolute;
+    width: 0.6ch;
+    height: 1.2em;
+    background: repeating-linear-gradient(to bottom,
+            #00E5FF 0,
+            #00E5FF 1px,
+            transparent 1px,
+            transparent 2px);
+    animation: blink 1s step-end infinite;
+    pointer-events: none;
+}
+
+.fake-caret.typing {
+    animation: none;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.contact .form-group input::selection,
+.contact .form-group textarea::selection {
+    background: #00E5FF;
+    color: black;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #00E5FF;
+    box-shadow: 0 0 6px #00E5FF;
+    outline: none;
+    color: #00E5FF;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group button {
+    font-family: 'Jersey 10', sans-serif;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    border: 2px solid #00FF9C;
+    background: transparent;
+    color: #00FF9C;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    padding: 0.5rem;
+    margin: 1rem 0rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.form-group button:hover {
+    background: #00FF9C;
+    color: #0a0a0a;
+    box-shadow: 0 0 12px rgba(0, 255, 156, 0.8);
+}
