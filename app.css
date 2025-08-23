@@ -17,6 +17,10 @@ body {
     min-height: 100vh;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+
 
 /* START OF HERO STYLES */
 
@@ -551,6 +555,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .project-card {
@@ -587,37 +592,25 @@ body {
     display: flex;
     flex-direction: column;
     z-index: -1;
+    margin-bottom: 15rem;
 }
 
-.face-folder, .desc-folder, .rating-folder {
+.folder-wrapper:last-of-type {
+    margin-bottom: 4rem;
+}
+
+.face-folder,
+.desc-folder,
+.rating-folder {
     clip-path: polygon(36% 0, 56% 14%, 100% 14%, 100% 100%, 0 100%, 0 55%, 0 0);
     padding: 1rem;
     display: flex;
     flex-direction: column;
     position: relative;
     width: 100%;
-    height: fit-content;
     box-sizing: border-box;
-    height: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0 8px 8px 8px;
-}
-
-/* Physical folder effects for each folder */
-.face-folder {
-    background: linear-gradient(180deg, 
-        #1a1a1a 0%, 
-        #151515 40%,
-        #0f0f0f 100%
-    );
-    box-shadow: 
-        /* Drop shadow - lightest shadow for top folder */
-        0 4px 15px rgba(0, 0, 0, 0.3),
-        /* Inset shadows for paper effect */
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
-        inset 1px 0 0 rgba(255, 255, 255, 0.05),
-        inset -1px 0 0 rgba(0, 0, 0, 0.1);
+    height: 400px;
+    border-radius: 10px;
 }
 
 .folder-header {
@@ -655,6 +648,10 @@ body {
 .folder-img {
     position: relative;
     flex: 1;
+    max-width: 350px;
+    outline: 1px solid rgba(240, 248, 255, 0.7);
+    outline-offset: 5px;
+    border-radius: 10px;
 }
 
 .folder-img img {
@@ -666,25 +663,34 @@ body {
 }
 
 .tech p {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     display: inline-block;
     padding: 0.2rem 1.2em;
     background: linear-gradient(135deg, #1a1a1a 0%, #000000 50%, #333333 100%);
     border-radius: 10px;
     color: white;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     font-weight: 500;
+}
+
+.face-folder {
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        inset 1px 0 0 rgba(255, 255, 255, 0.05),
+        inset -1px 0 0 rgba(0, 0, 0, 0.1);
+    
+    top: 0rem;
+    transform: perspective(1000px) rotateX(-20deg);
+    transform-style: preserve-3d;    
 }
 
 .desc-folder {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, 
-        #1a1f2e 0%, 
-        #141829 40%,
-        #0a0e1a 100%
-    );
     box-shadow: 
         0 6px 20px rgba(0, 0, 0, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.08),
@@ -694,6 +700,8 @@ body {
     z-index: -1;
     top: -4rem;
     transform: translateY(0);
+    transform: perspective(1000px) rotateX(-20deg);
+    transform-style: preserve-3d;    
 }
 
 
@@ -701,11 +709,6 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, 
-        #1a2e1a 0%, 
-        #142914 40%,
-        #0a1a0a 100%
-    );
     box-shadow: 
         0 8px 25px rgba(0, 0, 0, 0.5),
         inset 0 1px 0 rgba(255, 255, 255, 0.06),
@@ -715,6 +718,8 @@ body {
     z-index: -2;
     top: -8rem;
     transform: translateY(0);
+    transform: perspective(1000px) rotateX(-20deg);
+    transform-style: preserve-3d;
 }
 
 .folder-info {
@@ -823,100 +828,205 @@ body {
     color: rgba(255, 255, 255, 0.8);
 }
 
-.desc-folder.active {
-    z-index: 1;
-}
-
-.rating-folder.active {
-    z-index: 1;
-}
-
-.folder-wrapper:has(.desc-folder.active)>.face-folder {
+.face-folder .tab {
     position: absolute;
+    background: linear-gradient(180deg, 
+    #3a3a3a 0%, 
+    #2e2e2e 40%, 
+    #252525 100%);
+    top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.folder-wrapper:has(.desc-folder.active)>.face-folder .folder-header {
-    position: absolute;
-    top: 90%;
-    left: 1rem;
-    margin: 0;
     width: 100%;
-    display: flex;
-    align-items: center;
+    height: 13%;
 }
 
-.folder-wrapper:has(.desc-folder.active)>.face-folder .folder-content {
-    display: none;
-}
-
-.folder-wrapper:has(.rating-folder.active)>.face-folder {
+.desc-folder .tab {
     position: absolute;
+    background: linear-gradient(180deg, 
+    #3b4f72 0%, 
+    #2e3f61 40%,
+    #232f47 100%
+    );
+    top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.folder-wrapper:has(.rating-folder.active)>.face-folder .folder-header {
-    position: absolute;
-    top: 90%;
-    left: 1rem;
-    margin: 0;
-    padding: 0;
     width: 100%;
-    display: flex;
-    align-items: center;
+    height: 13%;
 }
 
-.folder-wrapper:has(.rating-folder.active)>.face-folder .folder-content {
-    display: none;
+.rating-folder .tab {
+    position: absolute;
+    background: linear-gradient(180deg, 
+    #3b5c3b 0%, 
+    #2f472f 40%, 
+    #243624 100%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 13%;
 }
 
-.folder-wrapper:has(.rating-folder.active)>.desc-folder {
+.rating-folder .rating-video {
+    width: 70%;
+    height: 50%;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    display: block;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+
+    outline: 1px solid rgba(255, 255, 255, 0.9);
+    outline-offset: 8px;
+}
+
+.face-folder {
+    background: linear-gradient(180deg, #2e2e2e 0%, #3d3434 50%, #4b4040 100%);
+}
+
+.desc-folder {
+    background: linear-gradient(180deg, #2a2e3d 0%, #232836 40%, #161a23 100%);
+}
+
+.rating-folder {
+    background: linear-gradient(180deg, #2a3d2a 0%, #203220 40%, #101a10 100%);
+}
+
+.face-folder .tab {
+    background: linear-gradient(180deg, #484848 0%, #3e3e3e 40%, #343434 100%);
+}
+
+.desc-folder .tab {
+    background: linear-gradient(180deg, #4a5f85 0%, #3f4f6c 40%, #2b3b52 100%);
+}
+
+.rating-folder .tab {
+    background: linear-gradient(180deg, #4a6b4a 0%, #3e583e 40%, #2b3f2b 100%);
+}
+
+.face-folder.loaded {
+    animation: slide-in-folder1 1.5s ease backwards, wobble-hint 0.8s ease;
+    animation-delay: 300ms, 1s;
+}
+
+.desc-folder.loaded {
+    animation: slide-in-folder2 1.5s ease backwards;
+    animation-delay: 200ms;
+}
+
+.rating-folder.loaded {
+    animation: slide-in-folder3 1.5s ease backwards;
+    animation-delay: 0s;
+}
+
+/* hide face-folder content when desc-folder is front */
+.folder-wrapper:has(.desc-folder.is-front)>.face-folder .folder-content {
+    opacity: 0;
+    pointer-events: none;
+    /* prevent clicks */
+}
+
+/* hide face-folder + desc-folder when rating is front */
+.folder-wrapper:has(.rating-folder.is-front)>.face-folder .folder-content,
+.folder-wrapper:has(.rating-folder.is-front)>.desc-folder .folder-info,
+.folder-wrapper:has(.rating-folder.is-front)>.desc-folder .folder-links {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* hide desc-folder when face is front */
+.folder-wrapper:has(.face-folder.is-front)>.desc-folder .folder-info,
+.folder-wrapper:has(.face-folder.is-front)>.desc-folder .folder-links {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.folder-info,
+.folder-links,
+.folder-content {
+    transition: opacity 0.25s ease;
+}
+
+/* ANIMATIONS FOR PROJECT SECTION */
+
+@keyframes slide-in-folder1 {
+    from {
+        top: -5rem;
+    }
+
+    to {
+        top: 0rem;
+    }
+}
+
+@keyframes slide-in-folder2 {
+    from {
+        top: -7rem;
+    }
+
+    to {
+        top: -4rem;
+    }
+}
+
+@keyframes slide-in-folder3 {
+    from {
+        top: -10rem;
+    }
+
+    to {
+        top: -8rem;
+    }
+}
+
+/* SWIPE LOGIC */
+
+/* Make sure the wrapper participates in the normal stacking order */
+.folder-wrapper {
+    z-index: auto !important;
     position: relative;
+}
+
+/* All three folders share the same transform with CSS variables for swipe */
+.folder-wrapper>.face-folder,
+.folder-wrapper>.desc-folder,
+.folder-wrapper>.rating-folder {
+    position: absolute;
     left: 0;
     right: 0;
-    bottom: 20%;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    z-index: revert-layer;
+    height: 400px;
+    /* keep your clip-path, shadows, etc. from before */
+    transition: transform .35s ease, opacity .35s ease;
+    will-change: transform;
+    /* base 3D tilt + variable-driven swipe; this overrides your previous transform */
+    transform: perspective(1000px) rotateX(-20deg) translateX(var(--tx, 0)) rotate(var(--rot, 0deg));
 }
 
-.folder-wrapper:has(.rating-folder.active)>.desc-folder .folder-header {
-    position: absolute;
-    top: 90%;
-    left: 1rem;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
+/* Stack positions (override any previous z-index/opacity/top) */
+.is-front {
+    z-index: 3;
+    opacity: 1;
+    top: 0rem;
 }
 
-.folder-wrapper:has(.rating-folder.active)>.desc-folder .folder-info,
-.folder-wrapper:has(.rating-folder.active)>.desc-folder .folder-links {
-    display: none;
+.is-middle {
+    z-index: 2;
+    opacity: .6;
+    top: -4rem;
 }
 
-.folder-wrapper:has(.face-folder.active)>.desc-folder .folder-info,
-.folder-wrapper:has(.face-folder.active)>.desc-folder .folder-links {
-    display: none;
+.is-back {
+    z-index: 1;
+    opacity: .45;
+    top: -8rem;
+}
+
+
+@keyframes wobble-hint {
+  0%   { transform: perspective(1000px) rotateX(-20deg) translateX(0) rotate(0deg); }
+  15%  { transform: perspective(1000px) rotateX(-20deg) translateX(-15px) rotate(-2deg); }
+  30%  { transform: perspective(1000px) rotateX(-20deg) translateX(15px)  rotate(2deg); }
+  45%  { transform: perspective(1000px) rotateX(-20deg) translateX(-10px) rotate(-1deg); }
+  60%  { transform: perspective(1000px) rotateX(-20deg) translateX(10px)  rotate(1deg); }
+  75%  { transform: perspective(1000px) rotateX(-20deg) translateX(-4px)  rotate(-1deg); }
+  100% { transform: perspective(1000px) rotateX(-20deg) translateX(0)     rotate(0deg); }
 }

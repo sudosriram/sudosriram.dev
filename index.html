@@ -17,7 +17,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Big+Shoulders:opsz,wght@10..72,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 
 <body>
@@ -85,6 +84,7 @@
      </section> -->
 
      <section class="project">
+        <div class="project-beam"></div>
         <div class="project-card">
             <div class="project-title">
                 <h3>P</h3>
@@ -99,6 +99,7 @@
             
             <div class="folder-wrapper">
                 <div class="face-folder">
+                    <div class="tab"></div>
                     <div class="folder-header">
                         <h3>CryptWarden</h3>
                     </div>
@@ -115,6 +116,7 @@
                     </div>
                 </div>
                 <div class="desc-folder">
+                    <div class="tab"></div>
                     <div class="folder-header">
                         <h3>DESCRIPTION</h3>
                     </div>
@@ -140,67 +142,184 @@
                     </div>
                 </div>
                 <div class="rating-folder">
+                    <div class="tab"></div>
                     <div class="folder-header">
                         <h3>RATING</h3>
                     </div>
+                    <video class="rating-video" src="assets/ratings/m1.mp4" style="width:100%; height:100%; object-fit:cover; display:none;"
+                        playsinline preload="auto"></video>
                 </div>
             </div>
             
-            <!-- <div class="folder">
-                <div class="card-header">
-                    <h3>BookRanker</h3>
-                </div>
-                <div class="card-content">
-                    <div class="card-img">
-                        <img src="assets/2.png" alt="">
+            <div class="folder-wrapper">
+                <div class="face-folder">
+                    <div class="tab"></div>
+                    <div class="folder-header">
+                        <h3>BookRanker</h3>
                     </div>
-                    <div class="card-desc">
-                        <p>C++ 20 console library with ranked search & reusable templates.</p>
-                        <div class="tech">
-                            <p>C++ 20</p>
+                    <div class="folder-content">
+                        <div class="folder-img">
+                            <img src="assets/2.png" alt="">
+                        </div>
+                        <div class="folder-desc">
+                            <p>C++ 20 console library with ranked search & reusable templates.</p>
+                            <div class="tech">
+                                <p>C++ 20</p>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="desc-folder">
+                    <div class="tab"></div>
+                    <div class="folder-header">
+                        <h3>DESCRIPTION</h3>
+                    </div>
+                    <div class="folder-info">
+                        <div class="info-label created">Created:</div>
+                        <div class="info-value date1">26 Jun 2025</div>
+            
+                        <div class="info-label finished">Finished:</div>
+                        <div class="info-value date2">30 Jun 2025</div>
+            
+                        <div class="info-description desc">
+                            <p>BookRanker is a C++20 project for managing a book library through code. You can add, view, and remove books, with a
+                                ranked search that matches partial titles and typos, delivering fast, relevant results with Google-style
+                                performance feedback, all without any UI or storage.</p>
+                        </div>
+                    </div>
+                    <div class="folder-links">
+                        <div class="info-label perm">File Permissions:</div>
+                        <div class="info-value data">R-W-X</div>
+            
+                        <div class="info-label access">Access:</div>
+                        <div class="info-value link"><a target="_blank" href="https://github.com/sudosriram/bookranker">Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="rating-folder">
+                    <div class="tab"></div>
+                    <div class="folder-header">
+                        <h3>RATING</h3>
+                    </div>
+                    <video class="rating-video" src="assets/ratings/m2.mp4" style="width:100%; height:100%; object-fit:cover; display:none;"
+                        playsinline preload="auto"></video>
                 </div>
             </div>
             
-            <div class="folder">
-                <div class="card-header">
-                    <h3>XBank</h3>
-                </div>
-                <div class="card-content">
-                    <div class="card-img">
-                        <img src="assets/3.png" alt="">
+            
+            <div class="folder-wrapper">
+                <div class="face-folder">
+                    <div class="tab"></div>
+                    <div class="folder-header">
+                        <h3>XBank</h3>
                     </div>
-                    <div class="card-desc">
-                        <p>Python console app to manage accounts and transfers.</p>
-                        <div class="tech">
-                            <p>Python</p>
+                    <div class="folder-content">
+                        <div class="folder-img">
+                            <img src="assets/3.png" alt="">
+                        </div>
+                        <div class="folder-desc">
+                            <p>Python console app to manage accounts and transfers.</p>
+                            <div class="tech">
+                                <p>Python</p>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="desc-folder">
+                    <div class="tab"></div>
+                    <div class="folder-header">
+                        <h3>DESCRIPTION</h3>
+                    </div>
+                    <div class="folder-info">
+                        <div class="info-label created">Created:</div>
+                        <div class="info-value date1">10 Jun 2025</div>
+            
+                        <div class="info-label finished">Finished:</div>
+                        <div class="info-value date2">11 Jun 2025</div>
+            
+                        <div class="info-description desc">
+                            <p>XBank is a basic Python console app where you can create accounts, deposit money, withdraw, and transfer between
+                                accounts. It’s a simple project with all the core banking features, run entirely in the terminal.</p>
+                        </div>
+                    </div>
+                    <div class="folder-links">
+                        <div class="info-label perm">File Permissions:</div>
+                        <div class="info-value data">R</div>
+            
+                        <div class="info-label access">Access:</div>
+                        <div class="info-value link">Denied</div>
+                    </div>
+                </div>
+                <div class="rating-folder">
+                    <div class="tab"></div>
+                    <div class="folder-header">
+                        <h3>RATING</h3>
+                    </div>
+                    <video class="rating-video" src="assets/ratings/m3.mp4" style="width:100%; height:100%; object-fit:cover; display:none;"
+                        playsinline preload="auto"></video>
                 </div>
             </div>
             
-            <div class="folder">
-                <div class="card-header">
-                    <h3>My Website</h3>
-                </div>
-                <div class="card-content">
-                    <div class="card-img">
-                        <img src="assets/4.png" alt="">
+            
+            <div class="folder-wrapper">
+                <div class="face-folder">
+                    <div class="tab"></div>
+                    <div class="folder-header">
+                        <h3>My Website</h3>
                     </div>
-                    <div class="card-desc">
-                        <p>Personal portfolio showcasing projects and skills.</p>
-                        <div class="tech multi">
-                            <p>HTML</p>
-                            <p>CSS</p>
-                            <p>JS</p>
+                    <div class="folder-content">
+                        <div class="folder-img">
+                            <img src="assets/4.png" alt="">
+                        </div>
+                        <div class="folder-desc">
+                            <p>Personal portfolio showcasing projects and skills.</p>
+                            <div class="tech multi">
+                                <p>HTML</p>
+                                <p>CSS</p>
+                                <p>JS</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div> -->
+                <div class="desc-folder">
+                    <div class="tab"></div>
+                    <div class="folder-header">
+                        <h3>DESCRIPTION</h3>
+                    </div>
+                    <div class="folder-info">
+                        <div class="info-label created">Created:</div>
+                        <div class="info-value date1">15 Aug 2025</div>
+            
+                        <div class="info-label finished">Finished:</div>
+                        <div class="info-value date2">24 Aug 2025</div>
+            
+                        <div class="info-description desc">
+                            <p>A responsive personal portfolio website built with HTML, CSS, and JavaScript for functionality. Includes hero,
+                                projects and contact section. Featuring a modern design optimized for both desktop and mobile.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="folder-links">
+                        <div class="info-label perm">File Permissions:</div>
+                        <div class="info-value data">R-W-X</div>
+            
+                        <div class="info-label access">Access:</div>
+                        <div class="info-value link"><a target="_blank" href="https://github.com/sudosriram/sudosriram.github.io">Github</a></div>
+                    </div>
+                </div>
+                <div class="rating-folder">
+                    <div class="tab"></div>
+                    <div class="folder-header">
+                        <h3>RATING</h3>
+                    </div>
+                    <video class="rating-video" src="assets/ratings/m4.mp4" style="width:100%; height:100%; object-fit:cover; display:none;"
+                        playsinline preload="auto"></video>
+                </div>
+            </div>
      </section>
 
     <script src="app.js"></script>
+    <script src="swipe-folders.js"></script>
 </body>
 
 </html>
