@@ -1,5 +1,20 @@
+function cancelWobbleAnimation(el) {
+    el.classList.remove('loaded'); // remove the animation class
+    el.style.animation = 'none';   // force it to stop
+    void el.offsetWidth;            // reflow to reset styles
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const face = document.querySelector('.face-folder');
+    // Stop wobble if user interacts
+    ['pointerdown', 'touchstart', 'mousedown'].forEach(event => {
+        face.addEventListener(event, () => {
+            if (face.classList.contains('loaded')) {
+                cancelWobbleAnimation(face);
+            }
+        });
+    });
     const folders = document.querySelectorAll('.face-folder, .desc-folder, .rating-folder');
 
     // click toggling
