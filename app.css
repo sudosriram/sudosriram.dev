@@ -618,20 +618,10 @@ html, body {
     align-items: center;
     font-size: clamp(3rem, 5vw, 4rem);
     margin-bottom: 10rem;
-    background: linear-gradient(90deg, #fff, #f0f0f0, #fff);
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: fade-title 0.6s ease forwards, shine 2s linear infinite;
-    animation-delay: 0.2s, 0.6s;
+    color: white;
+    animation: fade-title 0.6s ease forwards;
+    animation-delay: 0.2s;
     opacity: 0;
-}
-
-@keyframes shine {
-    to {
-        background-position: 200% center;
-    }
 }
 
 @keyframes fade-title {
@@ -727,11 +717,41 @@ html, body {
     margin-bottom: 1.5rem;
     display: inline-block;
     padding: 0.2rem 1.2em;
-    background: linear-gradient(135deg, #1a1a1a 0%, #000000 50%, #333333 100%);
     border-radius: 10px;
-    color: white;
     font-size: 0.9rem;
     font-weight: 500;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 50%, #333333 100%);
+    color: rgba(255, 255, 255, 0.7);
+    position: relative;
+    overflow: hidden;
+}
+
+.tech p::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    /* center the line vertically after rotation */
+    left: -50%;
+    width: 2px;
+    /* thin line */
+    height: 200%;
+    background: rgba(255, 255, 255, 1);
+    /* slightly more subtle */
+    transform: rotate(-30deg);
+    filter: blur(2px);
+    /* softer glow */
+    animation: shine 2.5s linear infinite;
+    mix-blend-mode: lighten;
+}
+
+@keyframes shine {
+    0% {
+        left: -75%;
+    }
+
+    100% {
+        left: 125%;
+    }
 }
 
 .face-folder {
