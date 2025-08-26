@@ -22,6 +22,23 @@ html, body {
 }
 
 
+.fixed-beam {
+    width: 50px;
+    height: 100%;
+    position: fixed;
+    background-color: white;
+    filter: blur(40px);
+    transform-origin: top center;
+    top: 0;
+    z-index: 0;
+
+    left: 0;
+    transform: rotate(-30deg);
+    opacity: 0;
+    animation: particle-delay 1s ease forwards;
+    animation-delay: 2s;
+}
+
 /* START OF HERO STYLES */
 
 .hero {
@@ -274,7 +291,6 @@ html, body {
     opacity: 0;
     overflow: hidden;
     transform: translateY(2rem);
-    /* Enable letterup and letterexpand animations */
     animation: letterup 500ms ease forwards, letterexpand 500ms ease forwards;
     animation-delay: 0s, 0.3s;
     position: relative;
@@ -287,9 +303,8 @@ html, body {
     opacity: 0;
     transform: translateY(2rem);
     display: inline-block;
-    /* Enable letterup animation for individual letters */
     animation: letterup 400ms ease forwards;
-    animation-delay: 0.2s; /* Will be overridden by JavaScript for stagger effect */
+    animation-delay: 0.2s;
 }
 
 .about-text {
@@ -404,13 +419,6 @@ html, body {
     opacity: 0;
     animation: move-beam-intro 2s ease forwards, move-beam-cycle 20s ease infinite;
     animation-delay: 0s, 3s;
-}
-
-.signature {
-    position: absolute;
-    bottom: 5%;
-    left: 15%;
-    transform: rotate(-5deg);
 }
 
 @keyframes move-beam-intro {
@@ -565,6 +573,11 @@ html, body {
     touch-action: pan-y;
 }
 
+/* .project,
+.project * {
+    overscroll-behavior: unset;
+} */
+
 @keyframes gradientFlow {
     0% {
         background-position: 0% 50%;
@@ -577,21 +590,6 @@ html, body {
     100% {
         background-position: 0% 50%;
     }
-}
-
-.project-beam {
-    width: 50px;
-    height: 100%;
-    position: fixed;
-    background-color: white;
-    filter: blur(40px);
-    transform-origin: top center;
-    top: 0;
-    z-index: 0;
-
-    left: 0;
-    transform: rotate(-30deg);
-
 }
 
 .project-card {

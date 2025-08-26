@@ -423,7 +423,7 @@
 
 
 
-.project-particle {
+.fixed-particle {
     background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.1) 70%);
     position: fixed;
     width: 10px;
@@ -432,51 +432,64 @@
     border-radius: 50%;
     opacity: 0.9;
 
-    animation-name: float1;
-    animation-duration: 8s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    animation: float1 8s ease-in-out infinite alternate,
+        particle-delay 1s ease forwards 2s;
 
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    opacity: 0;
 }
 
-.project-particle:nth-child(1) {
+@keyframes particle-delay {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fixed-particle:nth-child(2) {
     top: 90vh;
     left: 20vw;
+    animation: float1 8s ease-in-out infinite alternate,
+        particle-delay 1s ease forwards 2s;
 }
 
-.project-particle:nth-child(2) {
+.fixed-particle:nth-child(3) {
     width: 20px;
     height: 20px;
     left: 20vw;
     top: 10vh;
-    animation-name: float2;
-    animation-duration: 10s;
     background: radial-gradient(circle, rgba(255, 200, 200, 0.8) 0%, rgba(255, 200, 200, 0.1) 70%);
     box-shadow: 0 0 12px rgba(255, 200, 200, 0.5);
+
+    animation: float2 10s ease-in-out infinite alternate,
+        particle-delay 1s ease forwards 2s;
 }
 
-.project-particle:nth-child(3) {
+.fixed-particle:nth-child(4) {
     width: 25px;
     height: 25px;
     left: 70vw;
     top: 30vh;
-    animation-name: float3;
-    animation-duration: 12s;
     background: radial-gradient(circle, rgba(200, 255, 255, 0.8) 0%, rgba(200, 255, 255, 0.1) 70%);
     box-shadow: 0 0 10px rgba(200, 255, 255, 0.5);
+
+    animation: float3 12s ease-in-out infinite alternate,
+        particle-delay 1s ease forwards 2s;
 }
 
-.project-particle:nth-child(4) {
+.fixed-particle:nth-child(5) {
     width: 15px;
     height: 15px;
     left: 50vw;
     top: 70vh;
-    animation-name: float4;
-    animation-duration: 9s;
     background: radial-gradient(circle, rgba(200, 200, 255, 0.8) 0%, rgba(200, 200, 255, 0.1) 70%);
     box-shadow: 0 0 8px rgba(200, 200, 255, 0.5);
+
+    animation: float4 9s ease-in-out infinite alternate,
+        particle-delay 1s ease forwards 2s;
 }
 
 /* Different keyframes for variety */
