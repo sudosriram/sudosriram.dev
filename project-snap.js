@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const wrappers = document.querySelectorAll(".folder-wrapper");
+    const project = document.querySelector(".project");
+    if (!project) return;
+
+    const wrappers = project.querySelectorAll(".folder-wrapper");
     const OFFSET = -190;
     let index = 0;
     let startX = 0, startY = 0;
@@ -24,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return best;
     }
 
-    window.addEventListener("touchstart", (e) => {
+    project.addEventListener("touchstart", (e) => {
         startX = e.touches[0].clientX;
         startY = e.touches[0].clientY;
         decided = false;
@@ -33,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         index = findNearestIndex();
     }, { passive: true });
 
-    window.addEventListener("touchmove", (e) => {
+    project.addEventListener("touchmove", (e) => {
         const dx = e.touches[0].clientX - startX;
         const dy = e.touches[0].clientY - startY;
 
@@ -44,16 +47,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (dy > 0) {
                     // user swiping down
-                    if (index === 0 && window.scrollY === 0) {
-                        // let native PTR handle it
-                        intercept = false;
+                    if (index === 0 && project.scrollTop === 0) {
+                        intercept = false; // let native scroll/PTR handle it
                     } else {
                         intercept = true;
                     }
                 } else {
-                    // swiping up → always intercept
-                    intercept = true;
-                }
+    // swiping up
+    if (index === wrappers.length - 1) {
+        // last wrapper → let section-snap.js take over
+        intercept = false;
+    } else {
+        intercept = true;
+    }
+}
             } else if (Math.abs(dx) > Math.abs(dy)) {
                 // horizontal → ignore
                 decided = true;
@@ -66,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, { passive: false });
 
-    window.addEventListener("touchend", (e) => {
+    project.addEventListener("touchend", (e) => {
         if (!verticalIntent || !intercept) return;
 
         const dy = e.changedTouches[0].clientY - startY;
@@ -78,25 +85,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 index++;
                 smoothScrollTo(wrappers[index]);
             } else {
-                window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+                project.scrollTo({ top: project.scrollHeight, behavior: "smooth" });
             }
         } else {
             // swipe down
             if (index === 1) {
                 // special case → from second wrapper, jump to top of project section
-                const project = document.querySelector(".project");
-                if (project) {
-                    const top = project.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({ top, behavior: "smooth" });
-                    index = 0; // reset index
-                }
+                const top = project.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({ top, behavior: "smooth" });
+                index = 0; // reset index
             } else if (index > 1) {
                 index--;
                 smoothScrollTo(wrappers[index]);
-            } else if (window.scrollY > 0) {
-                window.scrollTo({ top: 0, behavior: "smooth" });
+            } else if (project.scrollTop > 0) {
+                project.scrollTo({ top: 0, behavior: "smooth" });
             }
-            // else → at very top, allow PTR
         }
     }, { passive: true });
 });
