@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sections = ORDER.map(s => document.querySelector(s)).filter(Boolean);
     if (sections.length < 2) return;
 
+    const hero = document.querySelector(".hero");
     const project = document.querySelector(".project");
     const wrappers = project ? Array.from(project.querySelectorAll(".folder-wrapper")) : [];
     const projectIndexInSections = project ? sections.indexOf(project) : -1;
@@ -21,8 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     function scrollToSection(i) {
         i = clampIndex(i);
-        const y = sections[i].getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
-        window.scrollTo({ top: y, behavior: "smooth" });
+        const sec = sections[i];
+        if (sec === hero) {
+            window.scrollTo({ top: 0, behavior: "smooth" }); // ✅ Hero always flush to top
+        } else {
+            const y = sec.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
+            window.scrollTo({ top: y, behavior: "smooth" });
+        }
     }
     function nearestSectionIndex() {
         let best = 0, dist = Infinity;
@@ -133,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             } else {
                 if (projIndex > 0) {
-                    projIndex--;
+                    projIndex--; // ✅ go wrapper by wrapper
                     smoothScrollToWrapper(wrappers[projIndex]);
                 } else if (projIndex === 0 && atTopOfProject()) {
                     const prev = sections[projectIndexInSections - 1];
