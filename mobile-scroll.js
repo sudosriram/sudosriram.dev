@@ -100,15 +100,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const inProjectNow = gestureStartedInsideProject || isPointInProject(t.clientX, t.clientY);
 
         if (!inProjectNow) {
-            // if we’re at the very top (hero visible & swiping down), let browser handle pull-to-refresh
             if (window.scrollY === 0 && dy > 0) {
-                intercept = false;
+                intercept = false; // let pull-to-refresh happen
             } else {
                 intercept = true;
             }
         } else {
-            // inside project → always intercept (to control snapping)
-            intercept = true;
+            intercept = true; // inside project → we control
         }
 
         if (intercept) e.preventDefault();
@@ -130,7 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     projIndex++;
                     smoothScrollToWrapper(wrappers[projIndex]);
                 } else {
-                    // last wrapper → go neatly into contact
                     const contact = sections[projectIndexInSections + 1];
                     if (contact) scrollToSection(projectIndexInSections + 1);
                 }
@@ -146,18 +143,20 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // outside project: section snap
+        // ----- Outside project: section snap -----
         const current = sectionAtViewportCenter();
         const currentIndex = sections.indexOf(current);
+
         if (goingUp && currentIndex < sections.length - 1) {
+            scrollToSection(currentIndex + 1);
+        } else if (!goingUp && currentIndex > 0) {
             if (sections[currentIndex] === document.querySelector(".contact") && project) {
+                // ✅ Contact → Project → land on LAST WRAPPER
                 smoothScrollToWrapper(wrappers[wrappers.length - 1]);
                 projIndex = wrappers.length - 1;
             } else {
-                scrollToSection(currentIndex + 1);
+                scrollToSection(currentIndex - 1);
             }
-        } else if (!goingUp && currentIndex > 0) {
-            scrollToSection(currentIndex - 1);
         }
     }, { passive: true });
 });
