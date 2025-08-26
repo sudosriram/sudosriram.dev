@@ -291,11 +291,14 @@ html, body {
     opacity: 0;
     overflow: hidden;
     transform: translateY(2rem);
-    animation: letterup 500ms ease forwards, letterexpand 500ms ease forwards;
-    animation-delay: 0s, 0.3s;
     position: relative;
     z-index: 11;
     pointer-events: auto;
+}
+
+.about-title.visible {
+    animation: letterup 500ms ease forwards, letterexpand 500ms ease forwards;
+    animation-delay: 0s, 0.3s;
 }
 
 .about-title h2 {
@@ -303,6 +306,9 @@ html, body {
     opacity: 0;
     transform: translateY(2rem);
     display: inline-block;
+}
+
+.about-title h2.visible {
     animation: letterup 400ms ease forwards;
     animation-delay: 0.2s;
 }
@@ -359,6 +365,10 @@ html, body {
     top: 10%;
     --rotate: -10deg;
     transform: translate(-50%) rotate(-10deg);
+    opacity: 0;
+}
+
+.c1.visible {
     animation: card1intro 1s ease forwards, card1float 3s ease-in-out infinite;
     animation-delay: 1.5s, 4s;
 }
@@ -368,6 +378,10 @@ html, body {
     top: 50%;
     --rotate: 15deg;
     transform: translate(-50%) rotate(15deg);
+    opacity: 0;
+}
+
+.c2.visible {
     animation: card2intro 1s ease forwards, card2float 3s infinite ease-in-out;
     animation-delay: 2s, 5s;
 }
@@ -417,6 +431,9 @@ html, body {
             transparent 100%);
     filter: blur(40px);
     opacity: 0;
+}
+
+.about-beam.visible {
     animation: move-beam-intro 2s ease forwards, move-beam-cycle 20s ease infinite;
     animation-delay: 0s, 3s;
 }
@@ -563,33 +580,10 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background: linear-gradient(-45deg, #0a0a0a, #141414, #222, #0f0f0f, #1a1a1a);
-    background-size: 800% 800%;
-    animation: gradientFlow 12s ease-in-out infinite;
     position: relative;
     overflow: hidden;
 
     touch-action: pan-y;
-}
-
-/* .project,
-.project * {
-    overscroll-behavior: unset;
-} */
-
-@keyframes gradientFlow {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
 }
 
 .project-card {
@@ -598,10 +592,9 @@ html, body {
     grid-template-columns: 1fr;
     gap: 1.5rem;
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px);
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
     padding: 1.5rem;
     border-radius: 15px;
 }
@@ -617,9 +610,12 @@ html, body {
     font-size: clamp(3rem, 5vw, 4rem);
     margin-bottom: 10rem;
     color: white;
+    opacity: 0;
+}
+
+.project-title.visible {
     animation: fade-title 0.6s ease forwards;
     animation-delay: 0.2s;
-    opacity: 0;
 }
 
 @keyframes fade-title {
@@ -728,18 +724,18 @@ html, body {
     content: '';
     position: absolute;
     top: -50%;
-    /* center the line vertically after rotation */
     left: -50%;
     width: 2px;
-    /* thin line */
     height: 200%;
     background: rgba(255, 255, 255, 1);
-    /* slightly more subtle */
     transform: rotate(-30deg);
     filter: blur(2px);
-    /* softer glow */
-    animation: shine 2.5s linear infinite;
     mix-blend-mode: lighten;
+    /* no animation here */
+}
+
+.tech.visible p::after {
+    animation: shine 2.5s linear infinite;
 }
 
 @keyframes shine {
@@ -968,17 +964,17 @@ html, body {
     background: linear-gradient(180deg, #4a6b4a 0%, #3e583e 40%, #2b3f2b 100%);
 }
 
-.face-folder.loaded {
+.face-folder.loaded.visible {
     animation: slide-in-folder1 0.8s ease backwards, wobble-hint 1s ease;
     animation-delay: 0.5s, 1.2s;
 }
 
-.desc-folder.loaded {
+.desc-folder.loaded.visible {
     animation: slide-in-folder2 0.8s ease backwards;
     animation-delay: 0.5s;
 }
 
-.rating-folder.loaded {
+.rating-folder.loaded.visible {
     animation: slide-in-folder3 0.8s ease backwards;
     animation-delay: 0.3s;
 }
@@ -1123,6 +1119,9 @@ html, body {
     display: inline-block;
     margin-top: 1rem;
     opacity: 0;
+}
+
+.contact-header.visible {
     animation: flipRoach 0.3s ease forwards;
     animation-delay: 4.5s;
 }
@@ -1137,6 +1136,9 @@ html, body {
     background: rgba(255, 255, 255, 0.05);
     width: 90%;
     opacity: 0;
+}
+
+.form.visible {
     animation: show-form 1s ease forwards;
     animation-delay: 4s;
 }
@@ -1182,30 +1184,45 @@ html, body {
 
 .g1 {
     opacity: 0;
+}
+
+.g1.visible {
     animation: flipRoach 0.3s ease forwards;
     animation-delay: 4.7s;
 }
 
 .g2 {
     opacity: 0;
+}
+
+.g2.visible {
     animation: flipRoach 0.3s ease forwards;
     animation-delay: 4.9s;
 }
 
 .g3 {
     opacity: 0;
+}
+
+.g3.visible {
     animation: flipRoach 0.3s ease forwards;
     animation-delay: 5.1s;
 }
 
 .g4 {
     opacity: 0;
+}
+
+.g4.visible {
     animation: flipRoach 0.3s ease forwards;
     animation-delay: 5.3s;
 }
 
 .g5 {
     opacity: 0;
+}
+
+.g5.visible {
     animation: flipRoach 0.3s ease forwards;
     animation-delay: 5.5s;
 }
@@ -1234,8 +1251,13 @@ html, body {
             #00E5FF 1px,
             transparent 1px,
             transparent 2px);
-    animation: blink 1s step-end infinite;
     pointer-events: none;
+    opacity: 0;
+}
+
+.fake-caret.visble {
+    opacity: 1;
+    animation: blink 1s step-end infinite;
 }
 
 .fake-caret.typing {
@@ -1344,8 +1366,11 @@ html, body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 
     position: absolute;
-    opacity: 1;
+    opacity: 0;
     transform: translateY(2rem) scale(1);
+}
+
+.search.visible {
     animation: fade-in-search 1s ease forwards, expand-search 1s ease forwards, pressedIn 0.4s ease forwards, search-to-container 1s ease forwards;
     animation-delay: 0s, 0.5s, 3s, 3.5s;
 }
@@ -1355,6 +1380,11 @@ html, body {
     position: absolute;
     left: 5%;
     transform: translateX(50%);
+    opacity: 0;
+}
+
+.search-icon.visible {
+    opacity: 1;
     animation: icon-move 1s ease forwards, remove-icon 0.3s ease forwards;
     animation-delay: 0.5s, 3s;
 }
@@ -1362,6 +1392,11 @@ html, body {
 .search-placeholder {
     display: inline-block;
     margin-left: 15%;
+    opacity: 0;
+}
+
+.search-placeholder {
+    opacity: 1;
     animation: typing-delay 0.1s ease forwards;
     animation-delay: 1.5s;
 }
@@ -1373,10 +1408,13 @@ html, body {
     border-right: 2px solid;
     white-space: nowrap;
     overflow: hidden;
-    animation: typing-delay 0.1s ease forwards, typing 1s steps(22), caret .4s step-end infinite alternate, remove-text 0.3s ease forwards;
-    animation-delay: 1.5s, 1.5s, 1.5s, 3s;
     opacity: 0;
     color: white;
+}
+
+.text.visible {
+    animation: typing-delay 0.1s ease forwards, typing 1s steps(22), caret .4s step-end infinite alternate, remove-text 0.3s ease forwards;
+    animation-delay: 1.5s, 1.5s, 1.5s, 3s;
 }
 
 

@@ -222,3 +222,58 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, { passive: true });
 });
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                const trigger = entry.target;
+                let animatable;
+
+                if (trigger.classList.contains('about')) {
+                    // all children in about
+                    animatable = trigger.querySelectorAll(
+                        '.about-title, .about-title h2, .c1, .c2, .about-beam'
+                    );
+                }
+
+                else if (trigger.classList.contains('project-title')) {
+                    // climb up to the .project container, then select everything inside
+                    const projectSection = trigger.closest('.project');
+                    animatable = projectSection.querySelectorAll(
+                        '.project-title, .tech, .face-folder.loaded, .desc-folder.loaded, .rating-folder.loaded'
+                    );
+                }
+
+                else if (trigger.classList.contains('contact-header')) {
+                    // climb up to the .contact container, then select everything inside
+                    const contactSection = trigger.closest('.contact');
+                    animatable = contactSection.querySelectorAll(
+                        '.contact-header, .form, .g1, .g2, .g3, .g4, .g5, .fake-caret, .search, .search-icon, .search-placeholder, .text'
+                    );
+                }
+
+                if (animatable) {
+                    animatable.forEach(el => el.classList.add('visible'));
+                }
+
+                // stop watching this trigger after it fired once
+                obs.unobserve(trigger);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    // observe "about" section
+    const about = document.querySelector('.about');
+    if (about) observer.observe(about);
+
+    // observe project-title instead of whole project
+    const projectTitle = document.querySelector('.project-title');
+    if (projectTitle) observer.observe(projectTitle);
+
+    // observe contact-header instead of whole contact
+    const contactHeader = document.querySelector('.contact-header');
+    if (contactHeader) observer.observe(contactHeader);
+});
