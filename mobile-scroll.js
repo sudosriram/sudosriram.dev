@@ -74,6 +74,35 @@ document.addEventListener("DOMContentLoaded", () => {
     let intercept = false;
     let gestureStartedInsideProject = false;
     let projIndex = 0;
+    let snapping = false; // 🚀 NEW: lock flag
+
+    function lockScroll() {
+        if (snapping) return;
+        snapping = true;
+        document.body.style.overflow = "hidden"; // freeze
+        setTimeout(() => {
+            document.body.style.overflow = ""; // restore
+            snapping = false;
+        }, 600); // match smooth scroll duration
+    }
+
+    function smoothScrollToWrapper(element) {
+        const top = element.getBoundingClientRect().top + window.scrollY + OFFSET;
+        lockScroll(); // 🚀 lock during snap
+        window.scrollTo({ top, behavior: "smooth" });
+    }
+
+    function scrollToSection(i) {
+        i = clampIndex(i);
+        const sec = sections[i];
+        lockScroll(); // 🚀 lock during snap
+        if (sec === hero) {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+            const y = sec.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
+            window.scrollTo({ top: y, behavior: "smooth" });
+        }
+    }
 
     // ----- Touch handlers -----
     window.addEventListener("touchstart", (e) => {
