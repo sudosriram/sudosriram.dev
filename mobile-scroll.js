@@ -100,9 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const inProjectNow = gestureStartedInsideProject || isPointInProject(t.clientX, t.clientY);
 
         if (!inProjectNow) {
-            intercept = true;
+            // if we’re at the very top (hero visible & swiping down), let browser handle pull-to-refresh
+            if (window.scrollY === 0 && dy > 0) {
+                intercept = false;
+            } else {
+                intercept = true;
+            }
         } else {
-            // inside project → always intercept (so no brute force native scroll)
+            // inside project → always intercept (to control snapping)
             intercept = true;
         }
 
@@ -134,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     projIndex--;
                     smoothScrollToWrapper(wrappers[projIndex]);
                 } else if (projIndex === 0 && atTopOfProject()) {
-                    // from top wrapper → go to previous section
                     const prev = sections[projectIndexInSections - 1];
                     if (prev) scrollToSection(projectIndexInSections - 1);
                 }
@@ -146,7 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const current = sectionAtViewportCenter();
         const currentIndex = sections.indexOf(current);
         if (goingUp && currentIndex < sections.length - 1) {
-            // from contact down into project → land on last wrapper
             if (sections[currentIndex] === document.querySelector(".contact") && project) {
                 smoothScrollToWrapper(wrappers[wrappers.length - 1]);
                 projIndex = wrappers.length - 1;
