@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         i = clampIndex(i);
         const sec = sections[i];
         if (sec === hero) {
-            window.scrollTo({ top: 0, behavior: "smooth" }); // ✅ Hero always flush to top
+            window.scrollTo({ top: 0, behavior: "smooth" }); // Hero always flush to top
         } else {
             const y = sec.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
             window.scrollTo({ top: y, behavior: "smooth" });
@@ -107,12 +107,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!inProjectNow) {
             if (window.scrollY === 0 && dy > 0) {
-                intercept = false; // let pull-to-refresh happen
+                intercept = false; // allow pull-to-refresh at top
             } else {
                 intercept = true;
             }
         } else {
-            intercept = true; // inside project → we control
+            intercept = true; // inside project → control snapping
         }
 
         if (intercept) e.preventDefault();
@@ -128,8 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const inProjectAtEnd = gestureStartedInsideProject || isPointInProject(endTouch.clientX, endTouch.clientY);
 
         if (inProjectAtEnd && project) {
+            // recompute current wrapper index
             projIndex = findNearestWrapperIndex();
+
             if (goingUp) {
+                // swipe up → move forward through wrappers or to contact
                 if (projIndex < wrappers.length - 1) {
                     projIndex++;
                     smoothScrollToWrapper(wrappers[projIndex]);
@@ -138,12 +141,36 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (contact) scrollToSection(projectIndexInSections + 1);
                 }
             } else {
-                if (projIndex > 0) {
-                    projIndex--; // ✅ go wrapper by wrapper
+                // swipe down → SPECIAL CASE: from second wrapper (index === 1) go to project start
+                if (projIndex === 1) {
+                    // go to the top/start of .project section (not first wrapper)
+                    if (projectIndexInSections >= 0) {
+                        scrollToSection(projectIndexInSections);
+                    } else {
+                        // fallback: align to project element top
+                        const top = project.getBoundingClientRect().top + window.scrollY;
+                        window.scrollTo({ top, behavior: "smooth" });
+                    }
+                    projIndex = 0;
+                } else if (projIndex > 1) {
+                    // normal wrapper-by-wrapper upward move
+                    projIndex--;
                     smoothScrollToWrapper(wrappers[projIndex]);
-                } else if (projIndex === 0 && atTopOfProject()) {
-                    const prev = sections[projectIndexInSections - 1];
-                    if (prev) scrollToSection(projectIndexInSections - 1);
+                } else {
+                    // projIndex === 0 — already at first wrapper
+                    if (atTopOfProject()) {
+                        const prev = sections[projectIndexInSections - 1];
+                        if (prev) scrollToSection(projectIndexInSections - 1);
+                    } else {
+                        // lock onto first wrapper if we're slightly off it
+                        if (wrappers[0]) {
+                            smoothScrollToWrapper(wrappers[0]);
+                            projIndex = 0;
+                        } else {
+                            // fallback to project top
+                            scrollToSection(projectIndexInSections);
+                        }
+                    }
                 }
             }
             return;
@@ -156,8 +183,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (goingUp && currentIndex < sections.length - 1) {
             scrollToSection(currentIndex + 1);
         } else if (!goingUp && currentIndex > 0) {
-            if (sections[currentIndex] === document.querySelector(".contact") && project) {
-                // ✅ Contact → Project → land on LAST WRAPPER
+            if (sections[currentIndex] === document.querySelector(".contact") && project && wrappers.length > 0) {
+                // Contact → Project: land on LAST wrapper
                 smoothScrollToWrapper(wrappers[wrappers.length - 1]);
                 projIndex = wrappers.length - 1;
             } else {
