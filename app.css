@@ -331,7 +331,7 @@ html, body {
 
 .about-text {
     color: white;
-    font-size: clamp(1.1rem, 2vw + 0.5rem, 3rem);
+    font-size: clamp(1.1rem, 2vw + 0.6rem, 2rem);
     grid-area: desc;
     text-transform: uppercase;
     position: relative;
@@ -429,7 +429,7 @@ html, body {
 }
 
 
-.about-beam {
+/* .about-beam {
     width: 150px;
     height: 100dvh;
     position: absolute;
@@ -452,7 +452,7 @@ html, body {
 .about-beam.visible {
     animation: move-beam-intro 2s ease forwards, move-beam-cycle 20s ease infinite;
     animation-delay: 0s, 3s;
-}
+} */
 
 @keyframes move-beam-intro {
     from {

@@ -34,3 +34,214 @@
         font-size: 1.5rem;
     }
 }
+
+
+
+/* ABOUT STYLES */
+
+@media screen and (min-width: 426px) {
+    .c1, .c2 {
+        width: 75%;
+    }
+
+    .c2 {
+        top: 55%;
+    }
+}
+
+
+@media (min-width: 500px) {
+
+    /* container anchors */
+    .about-card {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "about"
+            "desc";
+        gap: 2rem;
+        padding: 2rem;
+        margin: 2rem;
+
+        /* make sizing predictable */
+        /* box-sizing: border-box; */
+    }
+
+    .about-title {
+        grid-area: about;
+    }
+
+    .about-text {
+        grid-area: desc;
+        position: relative;
+        /* anchor for absolute children */
+        height: 80dvh;
+        width: 100%;
+
+        /* optional but recommended: prevent visual overflow */
+        /* overflow: hidden; */
+        /* box-sizing: border-box; */
+    }
+
+    /* === RESET mobile animation state (do NOT force transform:none !important) === */
+    .c1,
+    .c2 {
+        position: absolute;
+        width: 65%;
+        height: 35%;
+        opacity: 0;
+        margin: 0;
+
+        /* reset mobile animations only */
+        animation: none;
+        transform: none;
+
+        /* ensure padding/border are included in width,
+           and never exceed the parent's available width */
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+
+    /* left-anchored card (grows rightwards) */
+    .c1 {
+        top: 15%;
+        left: 0;
+        right: auto;
+        /* explicitly clear any earlier right */
+    }
+
+    /* right-anchored card (grows leftwards, guaranteed to stay inside) */
+    .c2 {
+        top: 60%;
+        right: 0;
+        left: auto;
+        /* explicitly clear any earlier left that might cause shifting */
+    }
+
+    /* DESKTOP slide-in + float (unchanged behaviour) */
+    .c1.visible {
+        animation:
+            card1slide 0.8s ease 1s forwards,
+            card1float 3s cubic-bezier(0.4, 0, 0.6, 1) 1.8s infinite !important;
+    }
+
+    .c2.visible {
+        animation:
+            card2slide 0.8s ease 1.8s forwards,
+            card2float 3s cubic-bezier(0.4, 0, 0.6, 1) 2.6s infinite !important;
+    }
+
+    @keyframes card1slide {
+        0% {
+            opacity: 0;
+            transform: translateX(-100%) translateY(0);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+    }
+
+    @keyframes card2slide {
+        0% {
+            opacity: 0;
+            transform: translateX(100%) translateY(0);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+    }
+
+    @keyframes card1float {
+        0% {
+            transform: translateX(0) translateY(0);
+        }
+
+        50% {
+            transform: translateX(0) translateY(-10px);
+        }
+
+        100% {
+            transform: translateX(0) translateY(0);
+        }
+    }
+
+    @keyframes card2float {
+        0% {
+            transform: translateX(0) translateY(0);
+        }
+
+        50% {
+            transform: translateX(0) translateY(-8px);
+        }
+
+        100% {
+            transform: translateX(0) translateY(0);
+        }
+    }
+
+    .c1::before {
+        width: 7px;
+        height: 7px;
+    }
+
+    .c2::after {
+        width: 7px;
+        height: 7px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .c1, .c2 {
+        width: 55%;
+        height: 40%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .c1, .c2 {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .c1, .c2 {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .c1, .c2 {
+        width: 45%;
+    }
+
+    .c1 {
+        top: 10%;
+        left: 2.5%;
+        right: auto;
+        /* explicitly clear any earlier right */
+    }
+
+    /* right-anchored card (grows leftwards, guaranteed to stay inside) */
+    .c2 {
+        top: 55%;
+        right: 2.5%;
+        left: auto;
+        /* explicitly clear any earlier left that might cause shifting */
+    }
+
+    .c1::before {
+        width: 10px;
+        height: 10px;
+    }
+
+    .c2::after {
+        width: 10px;
+        height: 10px;
+    }
+}
