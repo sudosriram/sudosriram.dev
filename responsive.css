@@ -1,0 +1,36 @@
+@media screen and (min-width: 425px) {
+    .fixed-beam {
+        transform: rotate(-40deg);
+    }
+}
+
+/* HERO STYLES */
+@media screen and (min-width: 600px) {
+    .fixed-beam {
+        transform: rotate(-50deg);
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .fixed-beam {
+        transform: rotate(-60deg);
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .hero-text h1 {
+        font-size: 6rem;
+    }
+
+    .hero-text p {
+        font-size: 0.95rem;
+    }
+
+    .scroll > p {
+        font-size: 0.85rem;
+    }
+    
+    .scroll .arrow {
+        font-size: 1.5rem;
+    }
+}
