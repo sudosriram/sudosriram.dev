@@ -909,15 +909,35 @@ html, body {
 }
 
 .access {
+    margin-top: 0.5rem;
     grid-area: access;
 }
 
 .link {
+    margin-top: 0.5rem;
     grid-area: link;
 }
 
 .link a {
-    color: rgba(255, 255, 255, 0.8);
+    color: #6effa3;
+    /* neon green */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link a:active {
+    color: #98ffc4;
+}
+
+.den {
+    color: #e05a5a;
+    /* subtle red, softer than #ff4d4d */
+    font-weight: 500;
+}
+
+.den:active {
+    color: #ff7676;
+    /* slightly lighter on tap */
 }
 
 .face-folder .tab {
