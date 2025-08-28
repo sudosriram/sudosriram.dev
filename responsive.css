@@ -256,4 +256,16 @@
     .folder-wrapper>.face-folder {
         height: 425px;
     }
+
+    .info-label {
+        font-size: 1rem;
+    }
+
+    .info-value {
+        font-size: 1rem;
+    }
+
+    .info-description {
+        font-size: 1.20rem;
+    }
 }
