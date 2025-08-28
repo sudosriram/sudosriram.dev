@@ -670,7 +670,7 @@ html, body {
     position: relative;
     width: 100%;
     box-sizing: border-box;
-    height: 400px;
+    height: auto;
     border-radius: 10px;
 }
 
@@ -692,7 +692,7 @@ html, body {
 }
 
 .folder-content {
-    margin-top: 5rem;
+    margin-top: 6rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -704,6 +704,7 @@ html, body {
 .folder-desc {
     margin-top: 1.3rem;
     color: rgba(255, 255, 255, 0.8);
+    font-size: 1.3rem;
 }
 
 .folder-img {
@@ -1072,10 +1073,8 @@ html, body {
     left: 0;
     right: 0;
     height: 400px;
-    /* keep your clip-path, shadows, etc. from before */
     transition: transform .35s ease, opacity .35s ease;
     will-change: transform;
-    /* base 3D tilt + variable-driven swipe; this overrides your previous transform */
     transform: perspective(1000px) rotateX(-20deg) translateX(var(--tx, 0)) rotate(var(--rot, 0deg));
 }
 

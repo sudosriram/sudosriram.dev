@@ -249,6 +249,11 @@
 
 /* PROJECT STYLES */
 
-@media screen and (min-width: 425px) {
-    
+@media screen and (min-width: 375px) {
+    .folder-content {
+        margin-top: 5rem;
+    }
+    .folder-wrapper>.face-folder {
+        height: 425px;
+    }
 }
