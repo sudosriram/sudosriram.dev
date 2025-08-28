@@ -628,6 +628,7 @@ html, body {
     margin-bottom: 10rem;
     color: white;
     opacity: 0;
+    grid-column: 1 / -1;
 }
 
 .project-title.visible {
