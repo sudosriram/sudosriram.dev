@@ -9,17 +9,18 @@
     <link rel="stylesheet" href="particles.css">
     <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="responsive.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Big+Shoulders:opsz,wght@10..72,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jersey+10&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Big+Shoulders:opsz,wght@10..72,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jersey+10&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Big+Shoulders:opsz,wght@10..72,100..900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jersey+10&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet">
+        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -28,7 +29,7 @@
     <div class="fixed-particle"></div>
     <div class="fixed-particle"></div>
     <div class="fixed-particle"></div>
-    <!-- <main class="hero">
+    <!-- <main class="hero" id=hero>
         <div class="spotlight">
             <div class="beam"></div>
             <div class="beam"></div>
@@ -90,7 +91,7 @@
         </div>
      </section> -->
 
-     <section class="project">
+    <section class="project" id="project">
         <div class="project-card">
             <div class="project-title">
                 <h3>P</h3>
@@ -319,10 +320,443 @@
                         playsinline preload="auto"></video>
                 </div>
             </div>
-     </section>
+        </div>
+
+        <!-- 600px+ -->
+        <div class="nautilus">
+            <div class="left">
+                <div class="top-bar">
+                    <p>Places</p>
+                </div>
+                <div class="side-bar">
+                    <a href="#" class="item active">
+                        <i class="bi bi-suitcase-lg"></i>
+                        <p>Projects</p>
+                    </a>
+                    <a href="#" class="item item-sub">
+                        <i class="bi bi-shield-lock"></i>
+                        <p>CryptWarden</p>
+                    </a>
+                    <a href="#" class="item item-sub">
+                        <i class="bi bi-book"></i>
+                        <p>BookRanker</p>
+                    </a>
+                    <a href="#" class="item item-sub">
+                        <i class="bi bi-bank"></i>
+                        <p>XBank</p>
+                    </a>
+                    <a href="#" class="item item-sub">
+                        <i class="bi bi-braces"></i>
+                        <p>Sriram</p>
+                    </a>
+                </div>
+            </div>
+            <div class="right">
+                <div class="status-bar">
+                    <div class="l">
+                        <div class="root">
+                            <i class="bi bi-suitcase-lg now"></i>
+                            <p class="now">Projects</p>
+                        </div>
+                        <p class="slash available">/</p>
+
+                        <div class="status-item">
+                            <i class="bi bi-shield-lock available"></i>
+                            <p class="available">CryptWarden</p>
+                        </div>
+
+                        <div class="status-item">
+                            <i class="bi bi-book available"></i>
+                            <p class="available">BookRanker</p>
+                        </div>
+
+                        <div class="status-item">
+                            <i class="bi bi-bank available"></i>
+                            <p class="available">XBank</p>
+                        </div>
+
+                        <div class="status-item">
+                            <i class="bi bi-braces available"></i>
+                            <p class="available">Sriram</p>
+                        </div>
+                    </div>
+                    <div class="r">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </div>
+                </div>
+                <div class="folder-area">
+                    <div class="pair crypt">
+                        <div class="f">
+                            <svg width="0" height="0">
+                                <defs>
+                                    <clipPath id="folderClip" clipPathUnits="objectBoundingBox">
+                                        <path
+                                            d="M0.4167 0.1667H0.1667C0.121 0.1667 0.0833 0.2043 0.0833 0.25v0.5c0 0.0457 0.0377 0.0833 0.0833 0.0833h0.6667c0.0457 0 0.0833-0.0377 0.0833-0.0833V0.3333c0-0.0457-0.0377-0.0833-0.0833-0.0833h-0.3333l-0.0833-0.0833z" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <div class="fname">CryptWarden</div>
+                    </div>
+
+                    <div class="pair crypt" data-project="CryptWarden">
+                        <div class="md">
+                            <svg class="md-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Main page -->
+                                <path d="M12 4 H44 L52 12 V56 H12 Z" fill="#A4CAED" />
+                                <!-- Folded corner -->
+                                <path d="M44 4 L44 12 L52 12 Z" fill="#4a89d4" />
+                                <!-- Lines of text -->
+                                <line x1="16" y1="24" x2="48" y2="24" stroke="#4a89d4" stroke-width="2" />
+                                <line x1="16" y1="32" x2="48" y2="32" stroke="#4a89d4" stroke-width="2" />
+                                <line x1="16" y1="40" x2="40" y2="40" stroke="#4a89d4" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <div class="fname">README.md</div>
+                    </div>
+
+                    <!-- BOOKRANKER -->
+                    <div class="pair book">
+                        <div class="f">
+                            <svg width="0" height="0">
+                                <defs>
+                                    <clipPath id="folderClip" clipPathUnits="objectBoundingBox">
+                                        <path
+                                            d="M0.4167 0.1667H0.1667C0.121 0.1667 0.0833 0.2043 0.0833 0.25v0.5c0 0.0457 0.0377 0.0833 0.0833 0.0833h0.6667c0.0457 0 0.0833-0.0377 0.0833-0.0833V0.3333c0-0.0457-0.0377-0.0833-0.0833-0.0833h-0.3333l-0.0833-0.0833z" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <i class="bi bi-book"></i>
+                        </div>
+                        <div class="fname">BookRanker</div>
+                    </div>
+                    
+                    <div class="pair book" data-project="BookRanker">
+                        <div class="md">
+                            <svg class="md-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Main page -->
+                                <path d="M12 4 H44 L52 12 V56 H12 Z" fill="#A4CAED" />
+                                <!-- Folded corner -->
+                                <path d="M44 4 L44 12 L52 12 Z" fill="#4a89d4" />
+                                <!-- Lines of text -->
+                                <line x1="16" y1="24" x2="48" y2="24" stroke="#4a89d4" stroke-width="2" />
+                                <line x1="16" y1="32" x2="48" y2="32" stroke="#4a89d4" stroke-width="2" />
+                                <line x1="16" y1="40" x2="40" y2="40" stroke="#4a89d4" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <div class="fname">README.md</div>
+                    </div>
+                    
+                    <!-- XBANK -->
+                    <div class="pair xbank">
+                        <div class="f">
+                            <svg width="0" height="0">
+                                <defs>
+                                    <clipPath id="folderClip" clipPathUnits="objectBoundingBox">
+                                        <path
+                                            d="M0.4167 0.1667H0.1667C0.121 0.1667 0.0833 0.2043 0.0833 0.25v0.5c0 0.0457 0.0377 0.0833 0.0833 0.0833h0.6667c0.0457 0 0.0833-0.0377 0.0833-0.0833V0.3333c0-0.0457-0.0377-0.0833-0.0833-0.0833h-0.3333l-0.0833-0.0833z" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <i class="bi bi-bank"></i>
+                        </div>
+                        <div class="fname">XBank</div>
+                    </div>
+                    
+                    <div class="pair xbank" data-project="XBank">
+                        <div class="md">
+                            <svg class="md-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Main page -->
+                                <path d="M12 4 H44 L52 12 V56 H12 Z" fill="#A4CAED" />
+                                <!-- Folded corner -->
+                                <path d="M44 4 L44 12 L52 12 Z" fill="#4a89d4" />
+                                <!-- Lines of text -->
+                                <line x1="16" y1="24" x2="48" y2="24" stroke="#4a89d4" stroke-width="2" />
+                                <line x1="16" y1="32" x2="48" y2="32" stroke="#4a89d4" stroke-width="2" />
+                                <line x1="16" y1="40" x2="40" y2="40" stroke="#4a89d4" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <div class="fname">README.md</div>
+                    </div>
+
+                    <!-- Sriram -->
+                    <div class="pair sriram">
+                        <div class="f">
+                            <svg width="0" height="0">
+                                <defs>
+                                    <clipPath id="folderClip" clipPathUnits="objectBoundingBox">
+                                        <path
+                                            d="M0.4167 0.1667H0.1667C0.121 0.1667 0.0833 0.2043 0.0833 0.25v0.5c0 0.0457 0.0377 0.0833 0.0833 0.0833h0.6667c0.0457 0 0.0833-0.0377 0.0833-0.0833V0.3333c0-0.0457-0.0377-0.0833-0.0833-0.0833h-0.3333l-0.0833-0.0833z" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <i class="bi bi-braces"></i>
+                        </div>
+                        <div class="fname">Sriram</div>
+                    </div>
+                    
+                    <div class="pair sriram">
+                        <div class="md">
+                            <svg class="md-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Main page -->
+                                <path d="M12 4 H44 L52 12 V56 H12 Z" fill="#A4CAED" />
+                                <!-- Folded corner -->
+                                <path d="M44 4 L44 12 L52 12 Z" fill="#4a89d4" />
+                                <!-- Lines of text -->
+                                <line x1="16" y1="24" x2="48" y2="24" stroke="#4a89d4" stroke-width="2" />
+                                <line x1="16" y1="32" x2="48" y2="32" stroke="#4a89d4" stroke-width="2" />
+                                <line x1="16" y1="40" x2="40" y2="40" stroke="#4a89d4" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <div class="fname">README.md</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="text-editor" data-project="CryptWarden" style="display: none;">
+            <div class="single-tab">
+                <p>Open</p>
+                <p>README.md</p>
+                <div class="btns">
+                    <div class="info">i
+                    </div>
+                    <i class="bi bi-x close-btn"></i>
+                </div>
+            </div>
+            <div class="file-info">
+                <div class="info-card">
+                    <p class="info-title">Project Info</p>
+                    <br>
+                    <br>
+                    <p class="info-head">Project name</p>
+                    <p class="info-data">CryptWarden</p>
+                    <br>
+                    <p class="info-head">Created</p>
+                    <p class="info-data">26 May 2025</p>
+                    <br>
+                    <p class="info-head">Finished</p>
+                    <p class="info-data">1 June 2025</p>
+                    <br>
+                    <p class="info-head">Language</p>
+                    <p class="info-data">C11</p>
+                </div>
+            </div>
+            <div class="content-area">
+                <h1 class="head">CryptWarden</h1>
+                <p class="sub-tag">A CLI password manager made with <span>C</span></p>
+                <a href="https://github.com/sudosriram/cryptwarden" target="_blank" class="sub-button">
+                    <i class="bi bi-github"></i>
+                    <span>Github</span>
+                </a>
+                <div class="divider"></div>
+                <div class="body">
+                    <div class="body-content">
+                        <h2 class="sub-head">What does it do?</h2>
+                        <div class="sub-text">
+                            <h3>1. Manage passwords</h3>
+                            <div class="sub-text-content">
+                                <p>CryptWarden’s main purpose is to let users securely store, read, update, and delete passwords.</p>
+                                <p>The CRUD operations can be done by interacting with a menu system.</p>
+                            </div>
+                        </div>
+                        <div class="sub-text">
+                            <h3>2. Encryption</h3>
+                            <div class="sub-text-content">
+                                <p>Just like how the core of every password managers are encryption, CryptWarden also holds the fort strong.</p>
+                                <p>The security system uses a master password for the manager, which is hashed with PBKDF2 and salted for added
+                                    security preventing rainbow table attacks.</p>
+                                <p>The user passwords are encrypted with AES-256 CBC using OpenSSL. So sensitive data remains confidential.</p>
+                            </div>
+                        </div>
+                        <div class="sub-text">
+                            <h3>3. Logging</h3>
+                            <div class="sub-text-content">
+                                <p>CryptWarden keeps a record of all actions.</p>
+                                <p>Logs are easy to view and can be cleared anytime.</p>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+         </div>
+
+         <!-- BOOKRANKER CONTENT -->
+        <div class="text-editor" data-project="BookRanker" style="display: none;">
+            <div class="single-tab">
+                <p>Open</p>
+                <p>README.md</p>
+                <div class="btns">
+                    <div class="info">i
+                    </div>
+                    <i class="bi bi-x close-btn"></i>
+                </div>
+            </div>
+            <div class="file-info">
+                <div class="info-card">
+                    <p class="info-title">Project Info</p>
+                    <br>
+                    <br>
+                    <p class="info-head">Project name</p>
+                    <p class="info-data">BookRanker</p>
+                    <br>
+                    <p class="info-head">Created</p>
+                    <p class="info-data">10 Jul 2025</p>
+                    <br>
+                    <p class="info-head">Finished</p>
+                    <p class="info-data">1 Jul 2025</p>
+                    <br>
+                    <p class="info-head">Language</p>
+                    <p class="info-data">C++ 20</p>
+                </div>
+            </div>
+            <div class="content-area bookranker">
+                <h1 class="head">BookRanker</h1>
+                <p class="sub-tag">A ranked book search engine with <span>C++ 20</span></p>
+                <a href="https://github.com/sudosriram/bookranker" target="_blank" class="sub-button">
+                    <i class="bi bi-github"></i>
+                    <span>Github</span>
+                </a>
+                <div class="divider"></div>
+                <div class="body">
+                    <div class="body-content">
+                        <h2 class="sub-head">What does it do?</h2>
+                
+                        <div class="sub-text">
+                            <h3>1. Add & View Books</h3>
+                            <div class="sub-text-content">
+                                <p>BookRanker lets you create your own in-memory library by adding books with details like title,
+                                    author, and ISBN.</p>
+                            </div>
+                        </div>
+                
+                        <div class="sub-text">
+                            <h3>2. Remove Books</h3>
+                            <div class="sub-text-content">
+                                <p>Unwanted entries? No problem.</p>
+                                <p>You can remove books by title, author, or ISBN, keeping your library clean and
+                                    relevant.</p>
+                            </div>
+                        </div>
+                
+                        <div class="sub-text">
+                            <h3>3. Ranked Search</h3>
+                            <div class="sub-text-content">
+                                <p>The crown jewel of BookRanker is its ranked search system which is smart, fast, and forgiving.</p>
+                                <p>You can search by title or author, even with partial, out-of-order, or slightly misspelled input.</p>
+                                <p>Results are scored and ranked by relevance, with exact matches prioritized for speed.
+                                </p>
+                                <p>Just like Google, it even shows how fast your query was processed:
+                                    <br>"About 3 results in 64 µs"
+                                </p>
+                            </div>
+                        </div>
+                
+                        <div class="sub-text">
+                            <h3>4. Smart Design</h3>
+                            <div class="sub-text-content">
+                                <p>Built with C++20, BookRanker utilizes clean object-oriented principles and generic design.</p>
+                                <p>Templates and lambda functions reduce repetition, making the code DRY, reusable, and easy to extend.
+                                </p>
+                                <p>No menus, no UI, no file storage. Just pure method calls for clarity and focus.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-    <section class="contact">
+        <!-- XBank Content -->
+        <div class="text-editor" data-project="XBank" style="display: none;">
+            <div class="single-tab">
+                <p>Open</p>
+                <p>README.md</p>
+                <div class="btns">
+                    <div class="info">i
+                    </div>
+                    <i class="bi bi-x close-btn"></i>
+                </div>
+            </div>
+            <div class="file-info">
+                <div class="info-card">
+                    <p class="info-title">Project Info</p>
+                    <br>
+                    <br>
+                    <p class="info-head">Project name</p>
+                    <p class="info-data">XBank</p>
+                    <br>
+                    <p class="info-head">Created</p>
+                    <p class="info-data">10 June 2025</p>
+                    <br>
+                    <p class="info-head">Finished</p>
+                    <p class="info-data">11 June 2025</p>
+                    <br>
+                    <p class="info-head">Language</p>
+                    <p class="info-data">Python 3.13.6</p>
+                </div>
+            </div>
+            <div class="content-area xbank-py">
+                <h1 class="head">XBank</h1>
+                <p class="sub-tag">A simple OOP banking system made with <span>Python</span></p>
+                <a href="https://github.com/sudosriram/xbank" target="_blank" class="sub-button">
+                    <i class="bi bi-github"></i>
+                    <span>Github</span>
+                </a>
+                <div class="divider"></div>
+                <div class="body">
+                    <div class="body-content">
+                        <h2 class="sub-head">What does it do?</h2>
+                
+                        <div class="sub-text">
+                            <h3>1. Create Accounts</h3>
+                            <div class="sub-text-content">
+                                <p>XBank allows users to open Savings or Checking accounts with a name and an initial deposit.</p>
+                                <p>Each account is assigned a unique 10-digit account number starting with 7.</p>
+                            </div>
+                        </div>
+                
+                        <div class="sub-text">
+                            <h3>2. Check Balance</h3>
+                            <div class="sub-text-content">
+                                <p>Balances are displayed in a neatly formatted table using PrettyTable for better readability.</p>
+                            </div>
+                        </div>
+                
+                        <div class="sub-text">
+                            <h3>3. Deposit & Withdraw Funds</h3>
+                            <div class="sub-text-content">
+                                <p>Funds can be deposited or withdrawn with proper input validation.</p>
+                                <p>Savings accounts enforce limits on free withdrawals, applying a 1% fee once the limit is exceeded.
+                                </p>
+                            </div>
+                        </div>
+                
+                        <div class="sub-text">
+                            <h3>4. Transfer Money</h3>
+                            <div class="sub-text-content">
+                                <p>Money can be transferred between accounts. Savings accounts apply the same transaction limit and fee
+                                    rules as with withdrawals.</p>
+                            </div>
+                        </div>
+                
+                        <div class="sub-text">
+                            <h3>5. Menu-Driven System</h3>
+                            <div class="sub-text-content">
+                                <p>The program runs in a continuous loop with a clear main menu.</p>
+                                <p>Users can navigate through account creation, deposits, withdrawals, transfers, and balance checks
+                                    without needing additional setup.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- <section class="contact" id="contact">
         <div class="particles">
             <span></span>
             <span></span>
@@ -397,14 +831,15 @@
                 </form>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <script src="app.js"></script>
     <script src="swipe-folders.js"></script>
     <!-- <script src="project-snap.js"></script> -->
     <script src="caret.js"></script>
     <!-- <script src="section-snap.js"></script> -->
-     <script src="mobile-scroll.js"></script>
+    <script src="mobile-scroll.js"></script>
+    <script src="responsive-folders.js"></script>
 </body>
 
 </html>
