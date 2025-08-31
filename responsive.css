@@ -567,6 +567,7 @@
         font-family: 'Inter', sans-serif;
         font-size: 1.25rem;
         margin-top: 2rem;
+        line-height: 1.25;
     }
 
     .sub-tag span {
@@ -686,5 +687,13 @@
 
     .xbank-py {
         background: url(assets/3.png) no-repeat center/cover;
+    }
+
+    .sriram-pf {
+        background: url(assets/4.png) no-repeat center/cover;
+    }
+
+    .italic {
+        font-style: italic;
     }
 }
