@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // ---------- ELEMENTS ----------
     const sideBar = document.querySelector(".side-bar");
     const sidebarItems = document.querySelectorAll(".side-bar .item");
     const folderArea = document.querySelector(".folder-area");
@@ -8,23 +9,53 @@ document.addEventListener("DOMContentLoaded", () => {
     const slash = document.querySelector(".status-bar .slash");
     const statusItems = Array.from(document.querySelectorAll(".status-bar .status-item"));
 
-    // --- Build a robust Name -> Group map from actual folder tiles (not README) ---
-    // Each project has two .pair for the same group: one with .f (folder), one README.md
+    // ---------- HELPERS ----------
+    // Touch detection that works on iPadOS (even with desktop UA)
+    const isTouchLike = () =>
+    (("ontouchstart" in window) ||
+        navigator.maxTouchPoints > 0 ||
+        window.matchMedia("(pointer: coarse)").matches);
+
+    // Build Name -> Group map from actual folder tiles (non-README)
     const PROJECTS = (() => {
         const map = {};
         document.querySelectorAll(".folder-area .pair .f").forEach(f => {
             const pair = f.closest(".pair");
             const name = pair.querySelector(".fname")?.textContent.trim();
-            const group = [...pair.classList].find(c => c !== "pair"); // e.g., "crypt", "book", "xbank", "sriram"
+            const group = [...pair.classList].find(c => c !== "pair"); // e.g., "crypt", "book", etc.
             if (name && group) map[name] = group;
         });
         return map;
     })();
 
-    // Helper: touch/small-screen vs desktop
-    const isTouchLike = () =>
-        /Mobi|Android|iPad|iPhone/i.test(navigator.userAgent) ||
-        window.matchMedia("(max-width: 1024px)").matches;
+    // Active project tracking; helps us resolve README -> editor when data attrs are missing
+    let currentProjectName = null;
+
+    const getActiveProjectNameFromSidebar = () =>
+        document.querySelector(".side-bar .item.active p")?.textContent?.trim() || null;
+
+    // Try to infer a "project id" from a .pair tile (prefer data-project, then group class, then active sidebar)
+    function getProjectIdFromPair(pair) {
+        if (!pair) return null;
+        const dataId = pair.dataset?.project?.trim?.();
+        if (dataId) return dataId;
+
+        const group = [...pair.classList].find(c => c !== "pair");
+        if (group) return group;
+
+        const fallback = getActiveProjectNameFromSidebar();
+        return fallback && fallback !== "Projects" ? fallback : null;
+    }
+
+    // Try to find the matching editor by several common data attributes
+    function findEditorByProjectId(projectId) {
+        if (!projectId) return null;
+        const selector =
+            `.text-editor[data-project="${projectId}"],` +
+            `.text-editor[data-group="${projectId}"],` +
+            `.text-editor[data-project-name="${projectId}"]`;
+        return document.querySelector(selector);
+    }
 
     // ---------- VIEW CONTROLS ----------
     function setActiveSidebar(name) {
@@ -35,14 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function updateStatusBarDefault() {
-        // Root visible & .now
         root.querySelectorAll("i, p").forEach(el => {
             el.classList.add("now");
             el.classList.remove("available");
             el.style.display = "inline-block";
         });
 
-        // Hide slash and all project status items
         if (slash) slash.style.display = "none";
         statusItems.forEach(item => {
             item.style.display = "none";
@@ -54,17 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function updateStatusBarProject(projectName) {
-        // Root visible but becomes .available
         root.querySelectorAll("i, p").forEach(el => {
             el.classList.remove("now");
             el.classList.add("available");
             el.style.display = "inline-block";
         });
 
-        // Show slash
         if (slash) slash.style.display = "inline-block";
 
-        // Show only the current project's status item and mark it .now
         statusItems.forEach(item => {
             const txt = item.querySelector("p")?.textContent.trim();
             const isCurrent = txt === projectName;
@@ -76,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Show only folder tiles (default) / hide all README.md tiles
+    // Show only folder tiles (hide README tiles)
     function showDefaultFolders() {
         document.querySelectorAll(".folder-area .pair").forEach(pair => {
             const name = pair.querySelector(".fname")?.textContent.trim();
@@ -96,16 +122,45 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function goRoot() {
+        currentProjectName = null;
         setActiveSidebar("Projects");
         updateStatusBarDefault();
         showDefaultFolders();
+        // Hide all editors when going root
+        document.querySelectorAll(".text-editor").forEach(ed => {
+            ed.style.display = "none";
+            const fi = ed.querySelector(".file-info");
+            if (fi) fi.classList.remove("open");
+        });
     }
 
     function openProject(projectName) {
         if (!(projectName in PROJECTS)) return; // safety
+        currentProjectName = projectName;
         setActiveSidebar(projectName);
         updateStatusBarProject(projectName);
         showOnlyReadmeOf(projectName);
+    }
+
+    // Open README editor by a generic projectId (data-project/group/name)
+    function openReadmeEditor(projectId) {
+        const editor = findEditorByProjectId(projectId);
+        // Hide all editors first
+        document.querySelectorAll(".text-editor").forEach(ed => ed.style.display = "none");
+        if (editor) {
+            editor.style.display = "flex";
+        } else {
+            // As a fallback, try with the currentProjectName if different
+            if (currentProjectName && currentProjectName !== projectId) {
+                const alt = findEditorByProjectId(currentProjectName);
+                if (alt) alt.style.display = "flex";
+            } else {
+                // Last resort: show the first editor so user isn't stuck (and log)
+                const first = document.querySelector(".text-editor");
+                if (first) first.style.display = "flex";
+                console.warn("[portfolio] No editor matched for projectId:", projectId);
+            }
+        }
     }
 
     // ---------- EVENT HANDLERS ----------
@@ -129,15 +184,13 @@ document.addEventListener("DOMContentLoaded", () => {
         root.addEventListener("click", goRoot);
     }
 
-    // Folder area:
-    // - On touch/small: SINGLE click opens
-    // - On desktop: DOUBLE click opens
+    // Folder area: open a project by tapping a folder tile (NOT the README tile)
     folderArea.addEventListener("click", (e) => {
-        if (!isTouchLike()) return; // desktop uses dblclick
+        if (!isTouchLike()) return; // desktop uses dblclick for folders too
         const pair = e.target.closest(".pair");
         if (!pair) return;
         const fname = pair.querySelector(".fname")?.textContent.trim();
-        if (!fname || fname === "README.md") return; // ignore README tiles
+        if (!fname || fname === "README.md") return; // ignore README tiles here
         openProject(fname);
     });
 
@@ -146,47 +199,43 @@ document.addEventListener("DOMContentLoaded", () => {
         const pair = e.target.closest(".pair");
         if (!pair) return;
         const fname = pair.querySelector(".fname")?.textContent.trim();
-        if (!fname || fname === "README.md") return; // ignore README tiles
+        if (!fname || fname === "README.md") return; // ignore README tiles here
         openProject(fname);
     });
 
-    // No need to rebind on resize — the handlers check isTouchLike() at event time
-    window.addEventListener("resize", () => {
-        // If user resized back to wide desktop while inside a project, nothing to do.
-        // Click method switches automatically due to isTouchLike() check above.
-    });
-
-    // ---------- INIT ----------
-    goRoot();
-});
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    const editors = document.querySelectorAll(".text-editor");
-
-    // Clicking README.md tile opens its editor
-    document.querySelector(".folder-area").addEventListener("click", (e) => {
+    // README tile -> open editor (touch: single tap, desktop: double click)
+    folderArea.addEventListener("click", (e) => {
+        if (!isTouchLike()) return; // desktop ignores single click
         const pair = e.target.closest(".pair");
         if (!pair) return;
-
         const fname = pair.querySelector(".fname")?.textContent.trim();
-        const project = pair.dataset.project;
-        if (fname !== "README.md" || !project) return;
+        if (fname !== "README.md") return;
 
-        // Hide all editors first
-        editors.forEach(ed => ed.style.display = "none");
-
-        // Show the one for this project
-        const editor = document.querySelector(`.text-editor[data-project="${project}"]`);
-        if (editor) editor.style.display = "flex";
+        const projectId = getProjectIdFromPair(pair) || currentProjectName || getActiveProjectNameFromSidebar();
+        openReadmeEditor(projectId);
     });
 
-    // Close & Info toggle inside each editor
-    editors.forEach(editor => {
+    folderArea.addEventListener("dblclick", (e) => {
+        if (isTouchLike()) return; // touch uses single click
+        const pair = e.target.closest(".pair");
+        if (!pair) return;
+        const fname = pair.querySelector(".fname")?.textContent.trim();
+        if (fname !== "README.md") return;
+
+        const projectId = getProjectIdFromPair(pair) || currentProjectName || getActiveProjectNameFromSidebar();
+        openReadmeEditor(projectId);
+    });
+
+    // Keep behavior consistent across resizes (handlers check isTouchLike at event time)
+    window.addEventListener("resize", () => { /* no-op by design */ });
+
+    // ---------- EDITOR WIRING ----------
+    // Close & Info toggle + content-area tap-to-close (touch only)
+    document.querySelectorAll(".text-editor").forEach(editor => {
         const closeBtn = editor.querySelector(".close-btn");
         const infoBtn = editor.querySelector(".info");
         const fileInfo = editor.querySelector(".file-info");
+        const contentArea = editor.querySelector(".content-area");
 
         if (closeBtn) {
             closeBtn.addEventListener("click", () => {
@@ -200,5 +249,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 fileInfo.classList.toggle("open");
             });
         }
+
+        // On touch devices, tapping inside .content-area closes the info sidebar
+        if (contentArea && fileInfo) {
+            contentArea.addEventListener("click", (ev) => {
+                if (isTouchLike() && fileInfo.classList.contains("open")) {
+                    fileInfo.classList.remove("open");
+                    // Optional: prevent content click side-effects when closing
+                    // ev.stopPropagation();
+                }
+            });
+        }
     });
+
+    // ---------- INIT ----------
+    goRoot();
 });
