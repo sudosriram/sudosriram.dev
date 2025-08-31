@@ -280,8 +280,37 @@
 @media screen and (min-width: 601px) {
     .project {
         display: flex;
+        flex-direction: column;
         padding: 0;
         height: 100dvh;
+    }
+
+    .section-title {
+        color: white;
+        font-family: 'Big Shoulders';
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+        width: 90vw;
+        letter-spacing: 0rem;
+        text-align: right;
+        opacity: 0;
+    }
+
+    .section-title.visible {
+        animation: expand-letters 1s ease forwards;
+    }
+
+    @keyframes expand-letters {
+        from {
+            opacity: 0;
+            letter-spacing: 0rem;
+        }
+
+        to {
+            opacity: 1;
+            letter-spacing: 0.5rem;
+        }
     }
 
     .project-card {
@@ -297,6 +326,21 @@
         width: 90vw;
         height: 80vh;
         display: flex;
+        opacity: 0;
+    }
+
+    .nautilus.active {
+        animation: fade-in 1s ease forwards;
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
 
     .left {
@@ -341,7 +385,7 @@
     }
 
     .item i {
-        margin-right: 0.5rem;
+        margin-right: 0.25rem;
     }
 
     .item.active {
@@ -349,7 +393,7 @@
     }
 
     .item-sub {
-        margin-left: clamp(1rem, 2vw, 2.5rem);
+        margin-left: clamp(0.75rem, 2vw, 2.5rem);
         background-color: rgba(255, 255, 255, 0.01);
     }
 
@@ -467,6 +511,8 @@
         display: flex;
         flex-direction: column;
         overflow: hidden;
+        opacity: 0;
+        animation: fade-in 1s ease forwards;
     }
 
     .project .text-editor * {
