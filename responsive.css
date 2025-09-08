@@ -734,6 +734,7 @@
         z-index: 2;
         width: 40%;
         height: 100%;
+        max-width: 350px;
         position: absolute;
         top: 8%;
         right: 0;
