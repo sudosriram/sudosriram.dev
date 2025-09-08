@@ -274,6 +274,10 @@
     .text-editor, .nautilus {
         display: none;
     }
+
+    .section-title {
+        display: none;
+    }
 }
 
 
@@ -285,31 +289,36 @@
         height: 100dvh;
     }
 
+    .project.locked {
+        overflow: hidden !important;
+        touch-action: none !important;
+    }
+
     .section-title {
         color: white;
-        font-family: 'Big Shoulders';
-        font-size: 2.5rem;
+        font-family: 'Archivo Black', sans-serif;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
         text-transform: uppercase;
         margin-bottom: 2rem;
         width: 90vw;
-        letter-spacing: 0rem;
+        letter-spacing: 1rem;
         text-align: right;
         opacity: 0;
+        transform: translateY(2rem);
     }
 
     .section-title.visible {
-        animation: expand-letters 1s ease forwards;
+        animation: letterup 0.5s ease forwards, expand-letters 1s ease forwards;
+        animation-delay: 0.5s, 0.8s;
     }
 
     @keyframes expand-letters {
         from {
-            opacity: 0;
-            letter-spacing: 0rem;
+            letter-spacing: 1rem;
         }
 
         to {
-            opacity: 1;
-            letter-spacing: 0.5rem;
+            letter-spacing: -0.25rem;
         }
     }
 
@@ -327,10 +336,13 @@
         height: 80vh;
         display: flex;
         opacity: 0;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 12px;
     }
 
-    .nautilus.active {
+    .nautilus.visible {
         animation: fade-in 1s ease forwards;
+        animation-delay: 1.5s;
     }
 
     @keyframes fade-in {
@@ -339,6 +351,18 @@
         }
 
         to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes letterup {
+        from {
+            transform: translateY(2rem);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0rem);
             opacity: 1;
         }
     }
@@ -372,7 +396,7 @@
         padding: 0.7rem;
         margin: 0.5rem;
         align-items: center;
-        font-size: clamp(0.75rem, 1.2vw, 1rem);;
+        font-size: clamp(0.75rem, 1.2vw, 1rem);
         text-decoration: none;
         border-radius: 7px;
         background: rgba(255, 255, 255, 0.01);
@@ -385,7 +409,7 @@
     }
 
     .item i {
-        margin-right: 0.25rem;
+        margin-right: clamp(0.25rem, 0.8vw, 0.75rem);
     }
 
     .item.active {
@@ -513,6 +537,7 @@
         overflow: hidden;
         opacity: 0;
         animation: fade-in 1s ease forwards;
+        border: 1px solid rgba(255, 255, 255, 0.5);
     }
 
     .project .text-editor * {
@@ -582,27 +607,57 @@
         flex: 1 1 auto;
         overflow-y: auto;
         overflow-x: hidden;
-        background: url(assets/1.png) no-repeat center/cover;
+        background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.95)), url(assets/1.png) no-repeat center/cover;
         color: white;
+        /* Firefox scrollbar styling */
+        scrollbar-width: thin;
+        scrollbar-color: #888 #2a2a2a;
+        /* Ensure scrollbar appears on top */
+        position: relative;
+        z-index: 15;
     }
 
-    .content-area::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.90);
-        border-radius: 0 0 12px 12px;
-        z-index: 0;
+    /* Webkit scrollbar styling for .content-area */
+    .content-area::-webkit-scrollbar {
+        width: 14px;
+        background: transparent;
+        z-index: 9999 !important;
+        position: relative;
+    }
+
+    .content-area::-webkit-scrollbar-track {
+        background: #2a2a2a;
+        border-radius: 8px;
+        margin: 4px;
+        z-index: 9999 !important;
+        position: relative;
+    }
+
+    .content-area::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 8px;
+        border: 2px solid #2a2a2a;
+        min-height: 30px;
+        z-index: 10000 !important;
+        position: relative;
+    }
+
+    .content-area::-webkit-scrollbar-thumb:hover {
+        background-color: #aaa;
+    }
+
+    .content-area::-webkit-scrollbar-thumb:active {
+        background-color: #bbb;
     }
 
     .content-area>* {
         position: relative;
-        z-index: 1;
+        z-index: 10;
     }
 
     .content-area .head {
         font-family: 'Bodoni Moda', serif;
-        font-size: 10vw;
+        font-size: clamp(3rem, 10vw, 8rem);
     }
 
     .content-area .body * {
@@ -611,13 +666,13 @@
 
     .content-area .sub-tag {
         font-family: 'Inter', sans-serif;
-        font-size: 1.25rem;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
         margin-top: 2rem;
         line-height: 1.25;
     }
 
     .sub-tag span {
-        font-size: 1.5rem;
+        font-size: clamp(1.5rem, 3.5vw, 2rem);
     }
 
     .sub-button {
@@ -646,7 +701,7 @@
 
     .body .sub-head {
         font-family: 'Bodoni Moda', serif;
-        font-size: 5vw;
+        font-size: clamp(2rem, 5vw, 4rem);
     }
 
     .divider {
@@ -663,7 +718,7 @@
 
     .body .sub-text h3 {
         font-family: 'Inter', sans-serif;
-        font-size: 1.2rem;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
         font-weight: bold;
     }
 
@@ -674,6 +729,7 @@
     .body .sub-text p {
         line-height: 1.3;
         margin-bottom: 0.8rem;
+        font-size: clamp(0.9rem, 2vw, 1.2rem);
     }
 
 
@@ -697,6 +753,7 @@
         transform: translateX(0);
         opacity: 1;
         visibility: visible;
+        z-index: 10000;
     }
 
     .info-card {
@@ -728,15 +785,15 @@
 
 
     .bookranker {
-        background: url(assets/2.png) no-repeat center/cover;
+        background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.95)), url(assets/2.png) no-repeat center/cover;
     }
 
     .xbank-py {
-        background: url(assets/3.png) no-repeat center/cover;
+        background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.95)), url(assets/3.png) no-repeat center/cover;
     }
 
     .sriram-pf {
-        background: url(assets/4.png) no-repeat center/cover;
+        background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.95)), url(assets/4.png) no-repeat center/cover;
     }
 
     .italic {

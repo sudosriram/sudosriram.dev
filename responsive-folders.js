@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Close & Info toggle + content-area tap-to-close (touch only)
     document.querySelectorAll(".text-editor").forEach(editor => {
         const closeBtn = editor.querySelector(".close-btn");
-        const infoBtn = editor.querySelector(".info");
+        const infoBtn = editor.querySelector(".btns .info");
         const fileInfo = editor.querySelector(".file-info");
         const contentArea = editor.querySelector(".content-area");
 
@@ -246,8 +246,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (infoBtn && fileInfo) {
             infoBtn.addEventListener("click", () => {
+                console.log('Info button clicked!', infoBtn);
                 fileInfo.classList.toggle("open");
+                console.log('File info classList after toggle:', fileInfo.classList);
             });
+        } else {
+            console.log('Missing elements:', { infoBtn, fileInfo });
         }
 
         // On touch devices, tapping inside .content-area closes the info sidebar
