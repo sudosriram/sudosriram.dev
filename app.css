@@ -1191,6 +1191,7 @@ html, body {
     backdrop-filter: blur(4px);
     background: rgba(255, 255, 255, 0.05);
     width: 90%;
+    height: fit-content;
     opacity: 0;
 }
 
@@ -1202,7 +1203,6 @@ html, body {
 .form-content {
     padding: 1rem 1.5rem;
     width: 100%;
-    max-width: 500px;
 }
 
 .form-content *,

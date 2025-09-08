@@ -287,11 +287,8 @@
         flex-direction: column;
         padding: 0;
         height: 100dvh;
-    }
-
-    .project.locked {
-        overflow: hidden !important;
-        touch-action: none !important;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
     }
 
     .section-title {
@@ -798,5 +795,29 @@
 
     .italic {
         font-style: italic;
+    }
+
+    /* CONTACT STYLES */
+
+    .contact-header {
+        font-size: clamp(2.4rem, calc(1.6rem + 2.2vw), 4rem);
+    }
+
+    .form-content label {
+        font-size: clamp(1.15rem, calc(0.93rem + 0.6vw), 1.6rem);
+    }
+
+    .alt-contact {
+        font-size: clamp(1rem, calc(0.85rem + 0.8vw), 1.3rem);
+    }
+
+    .form-group input, .form-group textarea {
+        font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.25rem);
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .form-content {
+        max-width: 800px;
     }
 }

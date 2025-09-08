@@ -16,6 +16,7 @@
         rel="stylesheet">
         
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="icon" type="image/png" href="assets/image.png">
 </head>
 
 <body>
@@ -819,13 +820,6 @@
 
 
     <section class="contact" id="contact">
-        <div class="particles">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
         <div class="search">
             <div class="search-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
@@ -852,7 +846,7 @@
                             </svg>
                             Name
                         </label>
-                        <input type="text" name="name" required>
+                        <input type="text" name="name" data-required="true" title="">
                     </div>
     
                     <div class="form-group g2">
@@ -864,7 +858,7 @@
                             </svg>
                             Email
                         </label>
-                        <input type="text" name="email" inputmode="email" autocomplete="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required>
+                        <input type="text" name="email" inputmode="email" autocomplete="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" data-required="true" title="">
                     </div>
                     <div class="form-group g3">
                         <label>
@@ -875,7 +869,7 @@
                             </svg>
                             Message
                         </label>
-                        <textarea name="message" rows="5" required></textarea>
+                        <textarea name="message" rows="5" data-required="true" title=""></textarea>
                     </div>
     
                     <div class="form-group g4">
