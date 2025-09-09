@@ -240,6 +240,18 @@
                         animatable = projectSection.querySelectorAll(
                             '.project-title, .tech, .face-folder.loaded, .desc-folder.loaded, .rating-folder.loaded'
                         );
+                        
+                        // Show mobile swipe overlay
+                        const mobileOverlay = projectSection.querySelector('.mobile-swipe-overlay');
+                        if (mobileOverlay) {
+                            setTimeout(() => {
+                                mobileOverlay.classList.add('show');
+                                // Hide overlay after 3 seconds
+                                setTimeout(() => {
+                                    mobileOverlay.classList.remove('show');
+                                }, 1600);
+                            }, 800); // Show overlay 800ms after project loads
+                        }
                     } else if (trigger.classList.contains('contact-header')) {
                         const contactSection = trigger.closest('.contact');
                         animatable = contactSection.querySelectorAll(
